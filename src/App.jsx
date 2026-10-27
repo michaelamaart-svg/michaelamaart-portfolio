@@ -2,8 +2,35 @@ import React from 'react'
 import './App.css'
 
 function App() {
+  const handleContactSubmit = (event) => {
+    event.preventDefault()
+    const formData = new FormData(event.currentTarget)
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const subject = formData.get('subject')
+    const message = formData.get('message')
+    const emailSubject = encodeURIComponent(subject)
+    const emailBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)
+    window.location.href = `mailto:YOUR_EMAIL@example.com?subject=${emailSubject}&body=${emailBody}`
+  }
+
   return (
     <div className="portfolio">
+
+    <div className="aurora-background"></div>
+
+    <div className="solar-system">
+      <div className="sun"></div>
+      <div className="orbit orbit-1"><span className="planet mercury" data-name="Mercury"></span></div>
+      <div className="orbit orbit-2"><span className="planet venus" data-name="Venus"></span></div>
+      <div className="orbit orbit-3"><span className="planet earth" data-name="Earth"></span></div>
+      <div className="orbit orbit-4"><span className="planet mars" data-name="Mars"></span></div>
+      <div className="orbit orbit-5"><span className="planet jupiter" data-name="Jupiter"></span></div>
+      <div className="orbit orbit-6"><span className="planet saturn" data-name="Saturn"></span></div>
+      <div className="orbit orbit-7"><span className="planet uranus" data-name="Uranus"></span></div>
+      <div className="orbit orbit-8"><span className="planet neptune" data-name="Neptune"></span></div>
+    </div>
+
 
       <nav className="navbar">
         <a href="#home" className="logo">M</a>
@@ -93,6 +120,7 @@ function App() {
       <section id="about" className="about-section">
         <div className="about-heading">
           <p className="small-heading">GET TO KNOW ME</p>
+          <p className="planet-section-tag"><span className="section-planet earth-dot"></span> PLANET EARTH · MY STORY</p>
           <h2>My <span>Story</span></h2>
         </div>
 
@@ -166,6 +194,7 @@ function App() {
       <section id="education" className="education-section">
         <div className="education-heading">
           <p className="small-heading">MY PATH SO FAR</p>
+          <p className="planet-section-tag"><span className="section-planet saturn-dot"></span> SATURN · MY JOURNEY</p>
 
           <h2>
             My <span>Journey</span>, My Evolution
@@ -243,6 +272,7 @@ function App() {
       <section id="projects" className="projects-section">
         <div className="projects-heading">
           <p className="small-heading">THINGS I'VE CREATED</p>
+          <p className="planet-section-tag"><span className="section-planet mars-dot"></span> MARS · PROJECT LAB</p>
 
           <h2>
             My <span>Projects</span>
@@ -256,7 +286,8 @@ function App() {
 
         <div className="project-grid">
 
-          <div className="project-card">
+          <div className="project-card planet-earth-card">
+            <span className="project-planet-emoji">🌍</span>
             <div className="project-number">01</div>
 
             <div className="project-image-placeholder">
@@ -285,7 +316,8 @@ function App() {
             </div>
           </div>
 
-          <div className="project-card">
+          <div className="project-card planet-saturn-card">
+            <span className="project-planet-emoji">🪐</span>
             <div className="project-number">02</div>
 
             <div className="project-image-placeholder art-placeholder">
@@ -314,7 +346,8 @@ function App() {
             </div>
           </div>
 
-          <div className="project-card">
+          <div className="project-card planet-mars-card">
+            <span className="project-planet-emoji">🔴</span>
             <div className="project-number">03</div>
 
             <div className="project-image-placeholder food-placeholder">
@@ -339,7 +372,7 @@ function App() {
               </div>
 
               <a
-                href="https://group-10-module-3-core-project-production-30a0.up.railway.app/"
+                href="https://foodboxx.onrender.com/login?redirect=/"
                 target="_blank"
                 rel="noreferrer"
                 className="project-link"
@@ -374,6 +407,7 @@ function App() {
       <section id="contact" className="contact-section">
         <div className="contact-heading">
           <p className="small-heading">LET'S CONNECT</p>
+          <p className="planet-section-tag"><span className="section-planet neptune-dot"></span> NEPTUNE · LET'S CONNECT</p>
 
           <h2>
             Let's Build Something <span>Together</span>
@@ -385,29 +419,52 @@ function App() {
           </p>
         </div>
 
-        <div className="contact-card">
-          <div className="contact-icon">✉</div>
+        <div className="contact-layout">
+          <div className="contact-card">
+            <div className="contact-icon">✉</div>
 
-          <h3>Get in Touch</h3>
+            <h3>Get in Touch</h3>
 
-          <p>
-            I'm open to connecting with people in tech,
-            learning from others and exploring new opportunities.
-          </p>
+            <p>
+              I'm open to connecting with people in tech,
+              learning from others and exploring new opportunities.
+            </p>
 
-          <a href="mailto:" className="contact-button">
-            Send Me an Email ↗
-          </a>
+            <div className="contact-note">
+              <span className="contact-note-dot"></span>
+              OPEN TO OPPORTUNITIES
+            </div>
 
-          <div className="contact-socials">
-            <a
-              href="https://github.com/michaelamaart-svg"
-              target="_blank"
-              rel="noreferrer"
-            >
-              GitHub ↗
-            </a>
+            <div className="contact-socials">
+              <a
+                href="https://github.com/michaelamaart-svg"
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub ↗
+              </a>
+            </div>
           </div>
+
+          <form className="contact-form-card" onSubmit={handleContactSubmit}>
+            <p className="form-top-label">TRANSMISSION CONSOLE</p>
+            <h3>Send a Message</h3>
+
+            <label htmlFor="contact-name">Your Name</label>
+            <input id="contact-name" name="name" type="text" placeholder="Enter your name" required />
+
+            <label htmlFor="contact-email">Your Email</label>
+            <input id="contact-email" name="email" type="email" placeholder="you@example.com" required />
+
+            <label htmlFor="contact-subject">Subject</label>
+            <input id="contact-subject" name="subject" type="text" placeholder="What would you like to discuss?" required />
+
+            <label htmlFor="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+
+            <button className="contact-submit" type="submit">Launch Message ↗</button>
+            <p className="form-help">Your email app will open with your message ready to send.</p>
+          </form>
         </div>
 
         <div className="contact-ending">
