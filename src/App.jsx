@@ -1,36 +1,138 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.css'
+import './SpaceEffects.css'
+
+const planets = [
+  {
+    name: 'Mercury',
+    description: 'My technical skills and the tools I use to build websites.',
+    color: '#9deaff',
+    destination: 'skills'
+  },
+  {
+    name: 'Venus',
+    description: 'My creativity, design interests and love for exploring new ideas.',
+    color: '#c4a1ff',
+    destination: 'about'
+  },
+  {
+    name: 'Earth',
+    description: 'Get to know me, my story and my journey into web development.',
+    color: '#5de4ff',
+    destination: 'about'
+  },
+  {
+    name: 'Mars',
+    description: 'Explore the projects I have created and the skills I have developed.',
+    color: '#ff8066',
+    destination: 'projects'
+  },
+  {
+    name: 'Jupiter',
+    description: 'Discover my education and learning journey.',
+    color: '#e8b890',
+    destination: 'education'
+  },
+  {
+    name: 'Neptune',
+    description: 'Have a project in mind? Get in touch with me.',
+    color: '#7d8cff',
+    destination: 'contact'
+  }
+]
+
+function InteractivePlanets() {
+  const [selectedPlanet, setSelectedPlanet] = useState(null)
+
+  const activePlanet = planets.find(
+    (planet) => planet.name === selectedPlanet
+  )
+
+  return (
+    <div className="planet-explorer">
+      <p className="planet-hint">✦ SELECT A PLANET TO EXPLORE ✦</p>
+
+      <div className="planet-list">
+        {planets.map((planet) => (
+          <button
+            key={planet.name}
+            type="button"
+            className={`planet-option ${selectedPlanet === planet.name ? 'active' : ''}`}
+            style={{ '--planet-color': planet.color }}
+            onClick={() =>
+              setSelectedPlanet(
+                selectedPlanet === planet.name ? null : planet.name
+              )
+            }
+            aria-expanded={selectedPlanet === planet.name}
+          >
+            <span className="planet-sphere" />
+            <span className="planet-name">{planet.name}</span>
+          </button>
+        ))}
+      </div>
+
+      {activePlanet && (
+        <div className="planet-info" key={activePlanet.name}>
+          <span className="planet-info-label">TRANSMISSION RECEIVED</span>
+          <h3>{activePlanet.name}</h3>
+          <p>{activePlanet.description}</p>
+
+          <button
+            type="button"
+            className="planet-explore-button"
+            onClick={() => {
+              const section = document.getElementById(
+                activePlanet.destination
+              )
+
+              if (section) {
+                section.scrollIntoView({ behavior: 'smooth' })
+              }
+            }}
+          >
+            Explore Destination ↗
+          </button>
+        </div>
+      )}
+    </div>
+  )
+}
 
 function App() {
   const handleContactSubmit = (event) => {
     event.preventDefault()
+
     const formData = new FormData(event.currentTarget)
     const name = formData.get('name')
     const email = formData.get('email')
     const subject = formData.get('subject')
     const message = formData.get('message')
     const emailSubject = encodeURIComponent(subject)
-    const emailBody = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)
+    const emailBody = encodeURIComponent(
+      `Name: ${name}\nEmail: ${email}\n\n${message}`
+    )
+
     window.location.href = `mailto:YOUR_EMAIL@example.com?subject=${emailSubject}&body=${emailBody}`
   }
 
   return (
     <div className="portfolio">
+      <div className="aurora-background"></div>
 
-    <div className="aurora-background"></div>
+      <div className="solar-system">
+        <div className="sun"></div>
+        <div className="orbit orbit-1"><span className="planet mercury" data-name="Mercury"></span></div>
+        <div className="orbit orbit-2"><span className="planet venus" data-name="Venus"></span></div>
+        <div className="orbit orbit-3"><span className="planet earth" data-name="Earth"></span></div>
+        <div className="orbit orbit-4"><span className="planet mars" data-name="Mars"></span></div>
+        <div className="orbit orbit-5"><span className="planet jupiter" data-name="Jupiter"></span></div>
+        <div className="orbit orbit-6"><span className="planet saturn" data-name="Saturn"></span></div>
+        <div className="orbit orbit-7"><span className="planet uranus" data-name="Uranus"></span></div>
+        <div className="orbit orbit-8"><span className="planet neptune" data-name="Neptune"></span></div>
+      </div>
 
-    <div className="solar-system">
-      <div className="sun"></div>
-      <div className="orbit orbit-1"><span className="planet mercury" data-name="Mercury"></span></div>
-      <div className="orbit orbit-2"><span className="planet venus" data-name="Venus"></span></div>
-      <div className="orbit orbit-3"><span className="planet earth" data-name="Earth"></span></div>
-      <div className="orbit orbit-4"><span className="planet mars" data-name="Mars"></span></div>
-      <div className="orbit orbit-5"><span className="planet jupiter" data-name="Jupiter"></span></div>
-      <div className="orbit orbit-6"><span className="planet saturn" data-name="Saturn"></span></div>
-      <div className="orbit orbit-7"><span className="planet uranus" data-name="Uranus"></span></div>
-      <div className="orbit orbit-8"><span className="planet neptune" data-name="Neptune"></span></div>
-    </div>
-
+      <InteractivePlanets />
 
       <nav className="navbar">
         <a href="#home" className="logo">M</a>
@@ -86,9 +188,7 @@ function App() {
             <span>LV. 01</span>
           </div>
 
-          <div className="profile-avatar">
-            M
-          </div>
+          <div className="profile-avatar">M</div>
 
           <h2>Michaela Maart</h2>
 
@@ -207,7 +307,6 @@ function App() {
         </div>
 
         <div className="education-timeline">
-
           <div className="timeline-card">
             <span className="timeline-date">2018 - 2022</span>
 
@@ -261,7 +360,6 @@ function App() {
 
             <span className="timeline-tag">IN PROGRESS</span>
           </div>
-
         </div>
 
         <div className="education-ending">
@@ -285,7 +383,6 @@ function App() {
         </div>
 
         <div className="project-grid">
-
           <div className="project-card planet-earth-card">
             <span className="project-planet-emoji">🌍</span>
             <div className="project-number">01</div>
@@ -381,7 +478,6 @@ function App() {
               </a>
             </div>
           </div>
-
         </div>
 
         <div className="projects-ending">
@@ -477,7 +573,6 @@ function App() {
         <p>© 2026 Michaela Maart</p>
         <a href="#home">Back to Top ↑</a>
       </footer>
-
     </div>
   )
 }

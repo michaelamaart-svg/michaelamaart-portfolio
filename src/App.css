@@ -1477,3 +1477,279 @@ a {
   border-color: #ff9b80;
   box-shadow: 0 15px 35px rgba(255, 155, 128, 0.15);
 }
+
+
+.profile-card {
+  border-color: rgba(93, 228, 255, 0.65);
+  box-shadow:
+    0 0 25px rgba(93, 228, 255, 0.12),
+    0 0 60px rgba(155, 123, 255, 0.12);
+}
+
+.profile-card::before {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border: 1px solid rgba(93, 228, 255, 0.55);
+  border-radius: 28px;
+  pointer-events: none;
+  animation: profileOrbitGlow 4s ease-in-out infinite;
+}
+
+.profile-card::after {
+  content: "";
+  position: absolute;
+  inset: -22px;
+  border: 1px solid rgba(155, 123, 255, 0.3);
+  border-radius: 34px;
+  pointer-events: none;
+  animation: profileOrbitGlow 5s ease-in-out infinite reverse;
+}
+
+@keyframes profileOrbitGlow {
+  0%, 100% {
+    opacity: 0.35;
+    box-shadow: 0 0 8px rgba(93, 228, 255, 0.08);
+  }
+
+  50% {
+    opacity: 1;
+    box-shadow:
+      0 0 18px rgba(93, 228, 255, 0.2),
+      0 0 28px rgba(155, 123, 255, 0.12);
+  }
+}
+
+.portfolio {
+  background:
+    radial-gradient(
+      ellipse at 15% 20%,
+      rgba(80, 55, 160, 0.22),
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at 85% 45%,
+      rgba(35, 115, 180, 0.18),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 50% 90%,
+      rgba(110, 65, 190, 0.14),
+      transparent 42%
+    ),
+    #070B18;
+  background-attachment: fixed;
+}
+
+.aurora-background {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.65;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, #ffffff 99%, transparent),
+    radial-gradient(2px 2px at 25% 75%, #5DE4FF 99%, transparent),
+    radial-gradient(1px 1px at 45% 35%, #ffffff 99%, transparent),
+    radial-gradient(2px 2px at 65% 15%, #9B7BFF 99%, transparent),
+    radial-gradient(1px 1px at 80% 65%, #ffffff 99%, transparent),
+    radial-gradient(1px 1px at 92% 30%, #5DE4FF 99%, transparent),
+    radial-gradient(2px 2px at 35% 55%, #ffffff 99%, transparent),
+    radial-gradient(1px 1px at 72% 88%, #9B7BFF 99%, transparent);
+  background-size: 320px 320px;
+  animation: cosmicDrift 100s linear infinite;
+}
+
+@keyframes cosmicDrift {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 320px 320px;
+  }
+}
+
+.portfolio {
+  background:
+    radial-gradient(
+      ellipse at 15% 20%,
+      rgba(80, 55, 160, 0.22),
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at 85% 45%,
+      rgba(35, 115, 180, 0.18),
+      transparent 38%
+    ),
+    radial-gradient(
+      ellipse at 50% 90%,
+      rgba(110, 65, 190, 0.14),
+      transparent 42%
+    ),
+    #070B18;
+  background-attachment: fixed;
+}
+
+.aurora-background {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.65;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, #ffffff 99%, transparent),
+    radial-gradient(2px 2px at 25% 75%, #5DE4FF 99%, transparent),
+    radial-gradient(1px 1px at 45% 35%, #ffffff 99%, transparent),
+    radial-gradient(2px 2px at 65% 15%, #9B7BFF 99%, transparent),
+    radial-gradient(1px 1px at 80% 65%, #ffffff 99%, transparent),
+    radial-gradient(1px 1px at 92% 30%, #5DE4FF 99%, transparent),
+    radial-gradient(2px 2px at 35% 55%, #ffffff 99%, transparent),
+    radial-gradient(1px 1px at 72% 88%, #9B7BFF 99%, transparent);
+  background-size: 320px 320px;
+  animation: cosmicDrift 100s linear infinite;
+}
+
+@keyframes cosmicDrift {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 320px 320px;
+  }
+}
+
+.planet-explorer {
+  width: min(900px, 92%);
+  margin: 50px auto;
+  padding: 30px 20px;
+  text-align: center;
+  color: #f4f4ff;
+}
+
+.planet-hint {
+  margin-bottom: 28px;
+  color: #5de4ff;
+  font-size: 12px;
+  letter-spacing: 3px;
+}
+
+.planet-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.planet-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  min-width: 90px;
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 16px;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.planet-option:hover,
+.planet-option.active {
+  border-color: var(--planet-color);
+  background: rgba(93, 228, 255, 0.06);
+  transform: translateY(-5px);
+}
+
+.planet-sphere {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #ffffff, var(--planet-color) 35%, #17152f 100%);
+  box-shadow: 0 0 15px var(--planet-color);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.planet-option:hover .planet-sphere,
+.planet-option.active .planet-sphere {
+  box-shadow: 0 0 25px var(--planet-color), 0 0 45px color-mix(in srgb, var(--planet-color) 35%, transparent);
+  transform: scale(1.12);
+}
+
+.planet-name {
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.planet-info {
+  max-width: 480px;
+  margin: 35px auto 0;
+  padding: 28px;
+  border: 1px solid rgba(93, 228, 255, 0.45);
+  border-radius: 18px;
+  background: rgba(9, 14, 35, 0.9);
+  box-shadow: 0 0 30px rgba(93, 228, 255, 0.1);
+  animation: planetReveal 0.35s ease both;
+}
+
+.planet-info-label {
+  color: #9b7bff;
+  font-size: 10px;
+  letter-spacing: 3px;
+}
+
+.planet-info h3 {
+  margin: 15px 0 10px;
+  color: #5de4ff;
+  font-size: 28px;
+}
+
+.planet-info p {
+  color: #d0d4e8;
+  line-height: 1.8;
+}
+
+.planet-explore-button {
+  margin-top: 15px;
+  padding: 12px 20px;
+  border: 1px solid #5de4ff;
+  border-radius: 30px;
+  background: transparent;
+  color: #5de4ff;
+  cursor: pointer;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.planet-explore-button:hover {
+  background: #5de4ff;
+  color: #070b18;
+}
+
+@keyframes planetReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 600px) {
+  .planet-list {
+    gap: 10px;
+  }
+
+  .planet-option {
+    min-width: 75px;
+    padding: 10px;
+  }
+
+  .planet-info {
+    padding: 22px;
+  }
+}
