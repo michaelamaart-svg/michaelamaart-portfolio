@@ -7,28 +7,35 @@ export default function MissionHome() {
       <div className="mission-copy">
         <p className="mission-label">
           <span className="status-dot"></span>
-          PORTFOLIO SYSTEM ONLINE
+          YOUR FRIENDLY NEIGHBOURHOOD DEVELOPER
         </p>
 
         <h1>
-          EXPLORING
+          Every universe
           <br />
-          <span>NEW WORLDS.</span>
+          starts with
+          <br />
+          <span>an idea.</span>
         </h1>
 
+        <h2 className="mission-welcome">Welcome to Stellara.</h2>
+
         <p className="mission-description">
-          Welcome to my creative universe, where design,
-          development, and imagination come together.
-          Every project is another mission waiting to launch.
+          I'm Michaela, a developer who enjoys turning ideas into interactive
+          experiences. Explore my universe and discover the projects, skills,
+          and ideas I'm bringing to life.
+        </p>
+
+        <p className="mission-prompt">
+          Choose your destination and begin exploring.
         </p>
 
         <div className="mission-actions">
-          <a href="#missions" className="mission-button">
-            EXPLORE MISSIONS ↗
+          <a href="#projects" className="mission-button">
+            EXPLORE MY WORK <span>↗</span>
           </a>
-
-          <a href="#contact" className="mission-link">
-            CONTACT ME
+          <a href="#crew" className="mission-link">
+            MEET THE COMMANDER <span>↓</span>
           </a>
         </div>
 
@@ -37,18 +44,19 @@ export default function MissionHome() {
             <strong>01</strong>
             <span>CREATIVE MIND</span>
           </div>
-
           <div>
             <strong>∞</strong>
-            <span>POSSIBILITIES</span>
+            <span>THINGS TO LEARN</span>
           </div>
         </div>
       </div>
 
       <div className="solar-system">
         <div className="solar-coordinate coordinate-top">
-          FIG. 001 — SOLAR EXPLORATION
+          FIG. 001 — MICHAELA'S UNIVERSE
         </div>
+
+        <div className="solar-glow"></div>
 
         <div className="orbit orbit-one">
           <span className="orbiting-planet planet-cyan"></span>
@@ -68,16 +76,16 @@ export default function MissionHome() {
           <div className="planet-ring"></div>
         </div>
 
-        <div className="planet-info">
+        <a href="#crew" className="planet-info">
           <span className="status-dot"></span>
-          <div>
-            <small>MISSION STATUS</small>
-            <strong>EXPLORING THE COSMOS</strong>
-          </div>
-        </div>
+          <span>
+            <small>YOUR DESTINATION</small>
+            <strong>MEET MICHAELA ↗</strong>
+          </span>
+        </a>
 
         <div className="solar-coordinate coordinate-bottom">
-          CREATIVITY: UNLIMITED · EST. 2026
+          MADE WITH CURIOSITY · EST. 2026
         </div>
       </div>
     </section>
