@@ -1,580 +1,372 @@
-import React, { useState } from 'react'
-import './App.css'
-import './SpaceEffects.css'
 
-const planets = [
+import React, { useState } from "react";
+import "./App.css";
+import MissionHome from "./MissionHome";
+
+const projects = [
   {
-    name: 'Mercury',
-    description: 'My technical skills and the tools I use to build websites.',
-    color: '#9deaff',
-    destination: 'skills'
+    number: "01",
+    name: "Kay's Wine & Dine",
+    category: "HOSPITALITY · WEB DESIGN",
+    description:
+      "A digital destination designed to bring dining, atmosphere and memorable experiences together.",
+    planet: "planet-rose",
+    symbol: "✳",
+    status: "MISSION COMPLETE",
+    tags: ["Web Design", "UI / UX"],
   },
   {
-    name: 'Venus',
-    description: 'My creativity, design interests and love for exploring new ideas.',
-    color: '#c4a1ff',
-    destination: 'about'
+    number: "02",
+    name: "Kay's Cart",
+    category: "PERSONAL PROJECT · PWA",
+    description:
+      "A practical shopping list and budget tracker built to make everyday shopping easier.",
+    planet: "planet-cyan",
+    symbol: "◉",
+    status: "IN DEVELOPMENT",
+    tags: ["Vue", "PWA", "Budgeting"],
   },
   {
-    name: 'Earth',
-    description: 'Get to know me, my story and my journey into web development.',
-    color: '#5de4ff',
-    destination: 'about'
+    number: "03",
+    name: "Modern Art Gallery",
+    category: "CREATIVE PROJECT · WEB",
+    description:
+      "A contemporary digital gallery where visual storytelling meets a clean, modern experience.",
+    planet: "planet-violet",
+    symbol: "✧",
+    status: "MISSION COMPLETE",
+    tags: ["Design", "Creative"],
   },
-  {
-    name: 'Mars',
-    description: 'Explore the projects I have created and the skills I have developed.',
-    color: '#ff8066',
-    destination: 'projects'
-  },
-  {
-    name: 'Jupiter',
-    description: 'Discover my education and learning journey.',
-    color: '#e8b890',
-    destination: 'education'
-  },
-  {
-    name: 'Neptune',
-    description: 'Have a project in mind? Get in touch with me.',
-    color: '#7d8cff',
-    destination: 'contact'
-  }
-]
+];
 
-function InteractivePlanets() {
-  const [selectedPlanet, setSelectedPlanet] = useState(null)
-
-  const activePlanet = planets.find(
-    (planet) => planet.name === selectedPlanet
-  )
-
-  return (
-    <div className="planet-explorer">
-      <p className="planet-hint">✦ SELECT A PLANET TO EXPLORE ✦</p>
-
-      <div className="planet-list">
-        {planets.map((planet) => (
-          <button
-            key={planet.name}
-            type="button"
-            className={`planet-option ${selectedPlanet === planet.name ? 'active' : ''}`}
-            style={{ '--planet-color': planet.color }}
-            onClick={() =>
-              setSelectedPlanet(
-                selectedPlanet === planet.name ? null : planet.name
-              )
-            }
-            aria-expanded={selectedPlanet === planet.name}
-          >
-            <span className="planet-sphere" />
-            <span className="planet-name">{planet.name}</span>
-          </button>
-        ))}
-      </div>
-
-      {activePlanet && (
-        <div className="planet-info" key={activePlanet.name}>
-          <span className="planet-info-label">TRANSMISSION RECEIVED</span>
-          <h3>{activePlanet.name}</h3>
-          <p>{activePlanet.description}</p>
-
-          <button
-            type="button"
-            className="planet-explore-button"
-            onClick={() => {
-              const section = document.getElementById(
-                activePlanet.destination
-              )
-
-              if (section) {
-                section.scrollIntoView({ behavior: 'smooth' })
-              }
-            }}
-          >
-            Explore Destination ↗
-          </button>
-        </div>
-      )}
-    </div>
-  )
-}
+const skills = [
+  { name: "HTML & CSS", type: "WEB SYSTEMS" },
+  { name: "JavaScript", type: "MISSION LOGIC" },
+  { name: "React", type: "INTERACTIVE SYSTEMS" },
+  { name: "Vue", type: "FRONTEND EXPLORATION" },
+  { name: "WordPress", type: "DIGITAL WORLDS" },
+  { name: "UI / UX Design", type: "CREW EXPERIENCE" },
+];
 
 function App() {
-  const handleContactSubmit = (event) => {
-    event.preventDefault()
+  const [menuOpen, setMenuOpen] = useState(false);
 
-    const formData = new FormData(event.currentTarget)
-    const name = formData.get('name')
-    const email = formData.get('email')
-    const subject = formData.get('subject')
-    const message = formData.get('message')
-    const emailSubject = encodeURIComponent(subject)
-    const emailBody = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\n${message}`
-    )
-
-    window.location.href = `mailto:YOUR_EMAIL@example.com?subject=${emailSubject}&body=${emailBody}`
-  }
+  const closeMenu = () => setMenuOpen(false);
 
   return (
-    <div className="portfolio">
-      <div className="aurora-background"></div>
-
-      <div className="solar-system">
-        <div className="sun"></div>
-        <div className="orbit orbit-1"><span className="planet mercury" data-name="Mercury"></span></div>
-        <div className="orbit orbit-2"><span className="planet venus" data-name="Venus"></span></div>
-        <div className="orbit orbit-3"><span className="planet earth" data-name="Earth"></span></div>
-        <div className="orbit orbit-4"><span className="planet mars" data-name="Mars"></span></div>
-        <div className="orbit orbit-5"><span className="planet jupiter" data-name="Jupiter"></span></div>
-        <div className="orbit orbit-6"><span className="planet saturn" data-name="Saturn"></span></div>
-        <div className="orbit orbit-7"><span className="planet uranus" data-name="Uranus"></span></div>
-        <div className="orbit orbit-8"><span className="planet neptune" data-name="Neptune"></span></div>
+    <main>
+      {/* Space background */}
+      <div className="space-background" aria-hidden="true">
+        <div className="space-glow glow-one" />
+        <div className="space-glow glow-two" />
+        <div className="space-grid" />
+        <div className="space-stars stars-one" />
+        <div className="space-stars stars-two" />
       </div>
 
-      <InteractivePlanets />
-
-      <nav className="navbar">
-        <a href="#home" className="logo">M</a>
-
-        <div className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#education">Education</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </div>
-
-        <a href="#contact" className="nav-button">
-          Let's Connect ↗
+      {/* Navigation */}
+      <header className="site-header">
+        <a className="brand" href="#home" onClick={closeMenu}>
+          <span className="brand-icon">✦</span>
+          <span>
+            <strong>ORBIT</strong>
+            <small>CREATIVE UNIVERSE</small>
+          </span>
         </a>
-      </nav>
 
-      <section id="home" className="hero-section">
-        <div className="hero-content">
-          <p className="small-heading">WELCOME TO MY DIGITAL WORLD</p>
+        <button
+          className="menu-toggle"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle navigation"
+          aria-expanded={menuOpen}
+        >
+          {menuOpen ? "✕" : "☰"}
+        </button>
 
-          <h1>
-            HELLO, I'M <span>MICHAELA</span>
-          </h1>
+        <nav className={menuOpen ? "nav-links nav-open" : "nav-links"}>
+          <a href="#home" onClick={closeMenu}>
+            01 / HOME
+          </a>
+          <a href="#missions" onClick={closeMenu}>
+            02 / MISSIONS
+          </a>
+          <a href="#crew" onClick={closeMenu}>
+            03 / CREW
+          </a>
+          <a href="#contact" onClick={closeMenu}>
+            04 / CONTACT
+          </a>
+        </nav>
 
-          <h2>Software Developer in the Making</h2>
-
-          <p className="hero-description">
-            I'm a software development student who enjoys creating
-            websites, exploring new technologies and bringing creative
-            ideas to life through code.
-          </p>
-
-          <p className="availability">
-            <span className="status-dot"></span>
-            AVAILABLE FOR OPPORTUNITIES
-          </p>
-
-          <div className="hero-buttons">
-            <a href="#projects" className="main-button">
-              View My Work ↗
-            </a>
-
-            <a href="#contact" className="secondary-button">
-              Contact Me ↗
-            </a>
-          </div>
+        <div className="system-status">
+          <span className="status-dot" />
+          SYSTEM ONLINE
         </div>
+      </header>
 
-        <div className="profile-card">
-          <div className="profile-card-top">
-            <span>PLAYER PROFILE</span>
-            <span>LV. 01</span>
-          </div>
+      {/* Homepage with moving planets */}
+      <MissionHome />
 
-          <div className="profile-avatar">M</div>
-
-          <h2>Michaela Maart</h2>
-
-          <p className="profile-role">ASPIRING SOFTWARE DEVELOPER</p>
-
-          <div className="profile-line"></div>
-
-          <p className="profile-label">CURRENT SKILLS</p>
-
-          <div className="skill-tags">
-            <span>HTML</span>
-            <span>CSS</span>
-            <span>JavaScript</span>
-            <span>React</span>
-          </div>
-
-          <div className="profile-status">
-            <span>STATUS</span>
-            <span>LEARNING & BUILDING</span>
-          </div>
-
-          <div className="profile-status">
-            <span>CLASS</span>
-            <span>WEB DEVELOPER</span>
-          </div>
-        </div>
-      </section>
-
-      <section id="about" className="about-section">
-        <div className="about-heading">
-          <p className="small-heading">GET TO KNOW ME</p>
-          <p className="planet-section-tag"><span className="section-planet earth-dot"></span> PLANET EARTH · MY STORY</p>
-          <h2>My <span>Story</span></h2>
-        </div>
-
-        <div className="about-content">
-          <div className="about-main-card">
-            <p className="small-heading">PLAYER BACKGROUND</p>
-
-            <h3>A little about me</h3>
-
-            <p>
-              Hi, I'm Michaela! I'm a software development student at
-              Life Choices Academy with an interest in web development,
-              design and technology.
-            </p>
-
-            <p>
-              My journey hasn't followed the exact path I originally
-              imagined, but I've learned that sometimes a change in
-              direction can lead you towards something meaningful.
-              My faith reminds me that not every change is a setback.
-            </p>
-
-            <p>
-              I'm currently building my skills, working on projects
-              and learning how to turn ideas into functional and
-              visually appealing websites.
-            </p>
-
-            <p>
-              My goal is to continue learning, gain practical
-              experience and grow into a confident software developer.
-            </p>
-          </div>
-
-          <div className="about-side-cards">
-            <div className="about-small-card">
-              <span className="about-icon">⌘</span>
-              <h3>Creative Thinking</h3>
-              <p>
-                I enjoy exploring ideas and finding creative ways
-                to bring designs to life.
-              </p>
+      {/* Scrolling specialties ticker */}
+      <div className="ticker" aria-label="Portfolio specialties">
+        <div className="ticker-track">
+          {[0, 1].map((copy) => (
+            <div className="ticker-group" key={copy}>
+              <span>WEB DEVELOPMENT</span>
+              <b>✦</b>
+              <span>UI / UX DESIGN</span>
+              <b>✦</b>
+              <span>DIGITAL EXPLORATION</span>
+              <b>✦</b>
+              <span>CREATIVE THINKING</span>
+              <b>✦</b>
             </div>
-
-            <div className="about-small-card">
-              <span className="about-icon">✧</span>
-              <h3>Always Learning</h3>
-              <p>
-                Every project gives me a chance to practise,
-                improve and discover something new.
-              </p>
-            </div>
-
-            <div className="about-small-card">
-              <span className="about-icon">♡</span>
-              <h3>Faith & Purpose</h3>
-              <p>
-                My faith keeps me grounded as I continue growing
-                and working towards my goals.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
+      </div>
 
-        <div className="about-ending">
-          <p>MY JOURNEY IS STILL LOADING...</p>
-          <span>THE BEST IS YET TO COME ✦</span>
-        </div>
-      </section>
-
-      <section id="education" className="education-section">
-        <div className="education-heading">
-          <p className="small-heading">MY PATH SO FAR</p>
-          <p className="planet-section-tag"><span className="section-planet saturn-dot"></span> SATURN · MY JOURNEY</p>
-
-          <h2>
-            My <span>Journey</span>, My Evolution
-          </h2>
-
-          <p>
-            Every experience has helped me learn something new
-            and shaped the person I am becoming.
-          </p>
-        </div>
-
-        <div className="education-timeline">
-          <div className="timeline-card">
-            <span className="timeline-date">2018 - 2022</span>
-
-            <h3>High School Education</h3>
-
-            <p>
-              Completed my school education and developed a
-              foundation for my future studies.
+      {/* Mission Archives */}
+      <section
+        className="missions section-shell section-space"
+        id="missions"
+      >
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">
+              <span className="eyebrow-line" /> THE EXPEDITION LOG
             </p>
 
-            <span className="timeline-tag">EDUCATION</span>
-          </div>
+            <h2>
+              MISSION <span className="gradient-text">ARCHIVES.</span>
+            </h2>
 
-          <div className="timeline-card">
-            <span className="timeline-date">2023 - 2024</span>
-
-            <h3>Work Experience</h3>
-
-            <p>
-              Gained experience in tutoring and medical practice
-              administration, developing communication,
-              organisation and problem-solving skills.
+            <p className="section-description">
+              A collection of worlds I've designed, developed and explored.
             </p>
-
-            <span className="timeline-tag">EXPERIENCE</span>
           </div>
 
-          <div className="timeline-card">
-            <span className="timeline-date">2026 - PRESENT</span>
-
-            <h3>Life Choices Academy</h3>
-
-            <p>
-              Studying software and web development while
-              learning to build responsive websites and
-              interactive applications.
-            </p>
-
-            <span className="timeline-tag">CURRENTLY LEARNING</span>
-          </div>
-
-          <div className="timeline-card">
-            <span className="timeline-date">NEXT LEVEL</span>
-
-            <h3>Future Goals</h3>
-
-            <p>
-              Continue my studies, gain industry experience
-              and develop my skills as a software developer.
-            </p>
-
-            <span className="timeline-tag">IN PROGRESS</span>
-          </div>
-        </div>
-
-        <div className="education-ending">
-          <p>THE JOURNEY CONTINUES.</p>
-        </div>
-      </section>
-
-      <section id="projects" className="projects-section">
-        <div className="projects-heading">
-          <p className="small-heading">THINGS I'VE CREATED</p>
-          <p className="planet-section-tag"><span className="section-planet mars-dot"></span> MARS · PROJECT LAB</p>
-
-          <h2>
-            My <span>Projects</span>
-          </h2>
-
-          <p>
-            A collection of projects I've built to explore,
-            create and grow my skills in web development and design.
-          </p>
+          <span className="section-index">ARCHIVE_001—003</span>
         </div>
 
         <div className="project-grid">
-          <div className="project-card planet-earth-card">
-            <span className="project-planet-emoji">🌍</span>
-            <div className="project-number">01</div>
+          {projects.map((project) => (
+            <article className="project-card" key={project.number}>
+              <div className={`project-art ${project.planet}`}>
+                <span className="project-number">
+                  MISSION {project.number}
+                </span>
 
-            <div className="project-image-placeholder">
-              <span>✦</span>
-              <h3>Kay's</h3>
-              <p>WINE & DINE</p>
-            </div>
+                <div className="project-orbit">
+                  <div className="project-sphere">
+                    {project.symbol}
+                  </div>
+                </div>
 
-            <div className="project-info">
-              <h3>Kay's Wine & Dine</h3>
+                <span className="project-art-caption">
+                  UNKNOWN / DISCOVERED
+                </span>
 
-              <p>
-                A website project focused on design,
-                presentation and user experience.
-              </p>
-
-              <div className="project-skills">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
+                <span className="project-art-corner">↗</span>
               </div>
 
-              <a href="#contact" className="project-link">
-                ↗ Coming Soon
-              </a>
-            </div>
-          </div>
+              <div className="project-info">
+                <div className="project-meta">
+                  <span>{project.category}</span>
 
-          <div className="project-card planet-saturn-card">
-            <span className="project-planet-emoji">🪐</span>
-            <div className="project-number">02</div>
+                  <span className="project-status">
+                    <span className="status-dot" />
+                    {project.status}
+                  </span>
+                </div>
 
-            <div className="project-image-placeholder art-placeholder">
-              <span>✧</span>
-              <h3>MODERN</h3>
-              <p>ART GALLERY</p>
-            </div>
+                <h3>{project.name}</h3>
+                <p>{project.description}</p>
 
-            <div className="project-info">
-              <h3>Modern Art Gallery</h3>
-
-              <p>
-                A creative gallery website designed to showcase
-                modern art through an engaging layout.
-              </p>
-
-              <div className="project-skills">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
+                <div className="project-tags">
+                  {project.tags.map((tag) => (
+                    <span key={tag}>{tag}</span>
+                  ))}
+                </div>
               </div>
-
-              <a href="#contact" className="project-link">
-                ↗ Coming Soon
-              </a>
-            </div>
-          </div>
-
-          <div className="project-card planet-mars-card">
-            <span className="project-planet-emoji">🔴</span>
-            <div className="project-number">03</div>
-
-            <div className="project-image-placeholder food-placeholder">
-              <span>⌘</span>
-              <h3>FoodBoxx</h3>
-              <p>PERFORMANCE FUEL</p>
-            </div>
-
-            <div className="project-info">
-              <h3>FoodBoxx</h3>
-
-              <p>
-                A food subscription web application developed
-                as part of a team project.
-              </p>
-
-              <div className="project-skills">
-                <span>HTML</span>
-                <span>CSS</span>
-                <span>JavaScript</span>
-                <span>Vue</span>
-              </div>
-
-              <a
-                href="https://foodboxx.onrender.com/login?redirect=/"
-                target="_blank"
-                rel="noreferrer"
-                className="project-link"
-              >
-                ↗ View Live Project
-              </a>
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
 
-        <div className="projects-ending">
-          <div className="projects-code-icon">&lt;/&gt;</div>
-
-          <h3>More projects coming soon...</h3>
-
-          <p>
-            I'm always exploring new ideas and technologies.
-          </p>
-
-          <a
-            href="https://github.com/michaelamaart-svg"
-            target="_blank"
-            rel="noreferrer"
-            className="github-button"
-          >
-            View My GitHub ↗
-          </a>
-        </div>
+        <p className="archive-note">
+          <span>✳</span> MORE WORLDS ARE CURRENTLY UNDER CONSTRUCTION.
+        </p>
       </section>
 
-      <section id="contact" className="contact-section">
-        <div className="contact-heading">
-          <p className="small-heading">LET'S CONNECT</p>
-          <p className="planet-section-tag"><span className="section-planet neptune-dot"></span> NEPTUNE · LET'S CONNECT</p>
-
-          <h2>
-            Let's Build Something <span>Together</span>
-          </h2>
-
-          <p>
-            Have a project idea, an opportunity or just want
-            to connect? I'd love to hear from you.
-          </p>
-        </div>
-
-        <div className="contact-layout">
-          <div className="contact-card">
-            <div className="contact-icon">✉</div>
-
-            <h3>Get in Touch</h3>
-
-            <p>
-              I'm open to connecting with people in tech,
-              learning from others and exploring new opportunities.
+      {/* Crew profile */}
+      <section className="crew section-shell section-space" id="crew">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">
+              <span className="eyebrow-line" /> PERSONNEL FILE
             </p>
 
-            <div className="contact-note">
-              <span className="contact-note-dot"></span>
-              OPEN TO OPPORTUNITIES
-            </div>
-
-            <div className="contact-socials">
-              <a
-                href="https://github.com/michaelamaart-svg"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub ↗
-              </a>
-            </div>
+            <h2>
+              MEET THE <span className="gradient-text">COMMANDER.</span>
+            </h2>
           </div>
 
-          <form className="contact-form-card" onSubmit={handleContactSubmit}>
-            <p className="form-top-label">TRANSMISSION CONSOLE</p>
-            <h3>Send a Message</h3>
-
-            <label htmlFor="contact-name">Your Name</label>
-            <input id="contact-name" name="name" type="text" placeholder="Enter your name" required />
-
-            <label htmlFor="contact-email">Your Email</label>
-            <input id="contact-email" name="email" type="email" placeholder="you@example.com" required />
-
-            <label htmlFor="contact-subject">Subject</label>
-            <input id="contact-subject" name="subject" type="text" placeholder="What would you like to discuss?" required />
-
-            <label htmlFor="contact-message">Message</label>
-            <textarea id="contact-message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
-
-            <button className="contact-submit" type="submit">Launch Message ↗</button>
-            <p className="form-help">Your email app will open with your message ready to send.</p>
-          </form>
+          <span className="section-index">CREW_FILE_001</span>
         </div>
 
-        <div className="contact-ending">
-          <p>THANK YOU FOR VISITING MY DIGITAL SPACE.</p>
-          <span>BUILT WITH CURIOSITY & COFFEE ✦</span>
+        <div className="crew-layout">
+          <div className="crew-photo-area">
+            <div className="crew-frame">
+              <img
+                src="/my-photo.jpg"
+                alt="Portrait of the portfolio creator"
+                onError={(event) => {
+                  event.currentTarget.style.display = "none";
+
+                  const placeholder =
+                    event.currentTarget.nextElementSibling;
+
+                  if (placeholder) {
+                    placeholder.style.display = "flex";
+                  }
+                }}
+              />
+
+              <div className="photo-placeholder">
+                <span>✦</span>
+                <strong>ASTRONAUT PORTRAIT</strong>
+                <small>ADD YOUR PHOTO TO /public/my-photo.jpg</small>
+              </div>
+            </div>
+
+            <span className="crew-photo-caption">
+              CREW MEMBER // 001
+            </span>
+          </div>
+
+          <div className="crew-copy">
+            <span className="mini-label">
+              HELLO, FELLOW EXPLORER.
+            </span>
+
+            <h3>
+              Curious mind.
+              <br />
+              <span className="gradient-text">Creative spirit.</span>
+            </h3>
+
+            <p>
+              I'm a developer and digital creator who enjoys turning ideas
+              into interactive experiences. I believe a website should do
+              more than look good — it should feel intuitive, tell a story
+              and give people something memorable to explore.
+            </p>
+
+            <p>
+              I'm continuing to grow my skills, experiment with new
+              technologies and build projects that reflect both creativity
+              and purpose. This portfolio is my mission log.
+            </p>
+
+            <div className="crew-facts">
+              <div>
+                <span>01</span>
+                <small>CREATIVE PROBLEM SOLVER</small>
+              </div>
+
+              <div>
+                <span>∞</span>
+                <small>ALWAYS LEARNING</small>
+              </div>
+            </div>
+
+            <a className="text-link" href="#contact">
+              ESTABLISH COMMUNICATION <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        {/* Skills */}
+        <div className="skills-block">
+          <div className="skills-heading">
+            <span className="mini-label">CREW CAPABILITIES</span>
+            <span className="section-index">SKILL MATRIX / 001</span>
+          </div>
+
+          <div className="skills-grid">
+            {skills.map((skill, index) => (
+              <div className="skill-card" key={skill.name}>
+                <span className="skill-number">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+
+                <strong>{skill.name}</strong>
+                <small>{skill.type}</small>
+                <span className="skill-arrow">↗</span>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
-      <footer className="footer">
-        <p>© 2026 Michaela Maart</p>
-        <a href="#home">Back to Top ↑</a>
+      {/* Contact */}
+      <section
+        className="contact section-shell section-space"
+        id="contact"
+      >
+        <div className="contact-panel">
+          <div className="contact-decoration" aria-hidden="true">
+            <div className="contact-orbit" />
+            <div className="contact-orb">✦</div>
+          </div>
+
+          <div className="contact-copy">
+            <p className="eyebrow">
+              <span className="eyebrow-line" /> INCOMING TRANSMISSION
+            </p>
+
+            <h2>
+              HAVE A MISSION
+              <br />
+              <span className="gradient-text">FOR ME?</span>
+            </h2>
+
+            <p>
+              Have an idea, a project or an opportunity to explore together?
+              Let's make contact and see what we can create.
+            </p>
+
+            <a
+              className="button button-primary"
+              href="mailto:your-email@example.com?subject=Let's%20work%20together"
+            >
+              <span>↗</span> SEND A TRANSMISSION
+            </a>
+
+            <small className="contact-note">
+              Replace the example email address with your real one.
+            </small>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="site-footer">
+        <a className="brand footer-brand" href="#home">
+          <span className="brand-icon">✦</span>
+          <span>
+            <strong>ORBIT</strong>
+            <small>CREATIVE UNIVERSE</small>
+          </span>
+        </a>
+
+        <p>MADE WITH CURIOSITY, CODE & A LITTLE COSMIC MAGIC.</p>
+
+        <a href="#home" className="back-top">
+          BACK TO ORBIT ↑
+        </a>
       </footer>
-    </div>
-  )
+    </main>
+  );
 }
 
-export default App
+export default App;
