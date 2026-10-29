@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import MissionHome from "./MissionHome";
 
@@ -8,29 +7,29 @@ const educationCategories = [
     id: "formal",
     title: "Formal Education",
     symbol: "✦",
-    description: "Your formal education details will go here.",
-    detail: "Add your qualification, institution and dates here when you're ready."
+    description: "My formal education and academic background.",
+    detail: "My education has helped me build a foundation for my future."
   },
   {
     id: "courses",
     title: "Courses & Training",
     symbol: "✧",
-    description: "Your courses and training will go here.",
-    detail: "Add courses, workshops and training you've completed."
+    description: "Courses and training that support my development.",
+    detail: "I continue to learn through practical projects and training."
   },
   {
     id: "certifications",
     title: "Certifications",
     symbol: "✹",
-    description: "Your certifications will go here.",
-    detail: "Add your certificates and the organisations that issued them."
+    description: "My certifications and completed learning programmes.",
+    detail: "This space can showcase certificates as I continue learning."
   },
   {
     id: "learning",
     title: "Currently Learning",
     symbol: "☾",
-    description: "What you're learning right now will go here.",
-    detail: "Add the skills, tools or topics you're currently exploring."
+    description: "I'm currently growing my software development skills.",
+    detail: "I'm learning new technologies and building projects to practise."
   }
 ];
 
@@ -45,16 +44,27 @@ const projects = [
   {
     title: "HR Modern Tech",
     number: "02",
-    description: "A project focused on modern technology and a professional digital experience.",
+    description: "A professional digital experience focused on modern technology.",
     tags: ["Web Development", "UI Design"],
-    visual: "hr-visual"
+    visual: "hr-visual",
+    liveLink: "https://hendrickscial-commits.github.io/modern_tech_back/",
+    githubLink: "https://github.com/hendrickscial-commits/modern-tech.git"
   },
   {
     title: "Foodboxx",
     number: "03",
     description: "A food-related digital project built as part of my development journey.",
     tags: ["Web Development", "Design"],
-    visual: "food-visual"
+    visual: "food-visual",
+    liveLink: "https://foodboxx.onrender.com"
+  },
+  {
+    title: "Pawtopia",
+    number: "04",
+    description: "A website project created to provide a digital experience for pet lovers.",
+    tags: ["Web Development", "Team Project"],
+    visual: "pawtopia-visual",
+    liveLink: "https://pawtopia-team.vercel.app"
   }
 ];
 
@@ -104,7 +114,7 @@ function SectionHeading({ eyebrow, title, subtitle, description }) {
 
 function Monogram() {
   return (
-    <span className="monogram" aria-label="MM">
+    <span className="monogram" aria-label="M M">
       <span>M</span>
       <span>M</span>
     </span>
@@ -116,11 +126,11 @@ function Navbar() {
 
   const links = [
     { label: "Home", href: "#home" },
-    { label: "Meet the Commander", href: "#crew" },
+    { label: "About", href: "#crew" },
     { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
-    { label: "Academic Journey", href: "#education" },
-    { label: "Lessons from the Universe", href: "#lessons" },
+    { label: "Education", href: "#education" },
+    { label: "Lessons", href: "#lessons" },
     { label: "Contact", href: "#contact" }
   ];
 
@@ -175,9 +185,10 @@ function AboutSection() {
       <div className="about-layout">
         <div className="profile-card">
           <div className="profile-stars"></div>
+
           <div className="profile-photo">
             <img
-              src="/my-photo.jpg"
+              src="/my-photo.jpeg"
               alt="Michaela"
               onError={(event) => {
                 event.currentTarget.style.display = "none";
@@ -187,10 +198,18 @@ function AboutSection() {
               <Monogram />
             </div>
           </div>
-          <p className="profile-kicker">YOUR FRIENDLY NEIGHBOURHOOD DEVELOPER</p>
+
+          <p className="profile-kicker">
+            YOUR FRIENDLY NEIGHBOURHOOD DEVELOPER
+          </p>
+
           <h3>Michaela</h3>
-          <p className="profile-role">Developer</p>
-          <p className="profile-tagline">Curious mind. Creative spirit. Always learning.</p>
+          <p className="profile-role">Software Developer</p>
+
+          <p className="profile-tagline">
+            Curious mind. Creative spirit. Always learning.
+          </p>
+
           <div className="profile-status">
             <span className="status-dot"></span>
             Exploring new possibilities
@@ -199,24 +218,33 @@ function AboutSection() {
 
         <div className="about-copy">
           <p className="section-eyebrow">MY STORY</p>
-          <h3>Building, learning and finding my way through the universe of code.</h3>
+
+          <h3>
+            Building, learning and finding my way through the universe of code.
+          </h3>
+
           <p>
             I'm Michaela, a developer with a passion for building interactive
             digital experiences and continuously expanding my technical skills.
           </p>
+
           <p>
             My journey in web development is driven by curiosity, creativity,
             and a commitment to learning. Through building projects and working
             through challenges, I'm developing my abilities, strengthening my
             problem-solving skills, and discovering new ways to bring ideas to life.
           </p>
+
           <p>
             As I continue to grow as a developer, I'm focused on creating
             meaningful projects, improving my technical knowledge, and preparing
             for opportunities where I can contribute, learn, and grow within the
             technology industry.
           </p>
-          <a className="text-link" href="#skills">Explore my skills <span>↗</span></a>
+
+          <a className="text-link" href="#skills">
+            Explore my skills <span>↗</span>
+          </a>
         </div>
       </div>
     </section>
@@ -225,12 +253,17 @@ function AboutSection() {
 
 function SkillsSection() {
   const skills = [
-    { name: "HTML & CSS", symbol: "⌘", level: "Web foundations" },
-    { name: "JavaScript", symbol: "JS", level: "Interactive experiences" },
+    { name: "HTML", symbol: "⌘", level: "Web foundations" },
+    { name: "CSS", symbol: "🎨", level: "Styling and layout" },
     { name: "React", symbol: "⚛", level: "Component-based development" },
     { name: "Vue", symbol: "◇", level: "Frontend development" },
     { name: "WordPress", symbol: "W", level: "Website building" },
-    { name: "UI / UX Design", symbol: "✧", level: "Design and usability" }
+    {
+      name: "GitHub",
+      symbol: "🐙",
+      level: "Version control and collaboration",
+      description: "Pushing and pulling code using GitHub."
+    }
   ];
 
   return (
@@ -275,18 +308,51 @@ function ProjectsSection() {
               <div className="project-orbit project-orbit-one"></div>
               <div className="project-orbit project-orbit-two"></div>
               <div className="project-planet"></div>
-              <span className="project-visual-label">STELLARA / PROJECT FILE</span>
+              <span className="project-visual-label">
+                STELLARA / PROJECT FILE
+              </span>
             </div>
+
             <div className="project-content">
               <p className="project-kicker">PROJECT {project.number}</p>
               <h3>{project.title}</h3>
               <p className="project-description">{project.description}</p>
+
               <div className="project-tags">
                 {project.tags.map((tag) => (
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
-              <p className="project-note">More details coming soon <span>✦</span></p>
+
+              <div className="project-links">
+                {project.liveLink && (
+                  <a
+                    className="project-link"
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    View Project <span>↗</span>
+                  </a>
+                )}
+
+                {project.githubLink && (
+                  <a
+                    className="project-link"
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    GitHub <span>↗</span>
+                  </a>
+                )}
+
+                {!project.liveLink && !project.githubLink && (
+                  <p className="project-note">
+                    More details coming soon <span>✦</span>
+                  </p>
+                )}
+              </div>
             </div>
           </article>
         ))}
@@ -297,6 +363,7 @@ function ProjectsSection() {
 
 function EducationSection() {
   const [selectedEducation, setSelectedEducation] = useState("formal");
+
   const selected = educationCategories.find(
     (category) => category.id === selectedEducation
   );
@@ -314,8 +381,16 @@ function EducationSection() {
         <div className="education-map">
           <div className="education-nebula education-nebula-one"></div>
           <div className="education-nebula education-nebula-two"></div>
-          <div className="education-starfield">✦　·　✧　·　✦　·　✧　·　✦</div>
-          <svg className="education-connections" viewBox="0 0 600 500" aria-hidden="true">
+
+          <div className="education-starfield">
+            ✦　·　✧　·　✦　·　✧　·　✦
+          </div>
+
+          <svg
+            className="education-connections"
+            viewBox="0 0 600 500"
+            aria-hidden="true"
+          >
             <circle cx="300" cy="250" r="108" />
             <circle cx="300" cy="250" r="192" />
             <circle cx="300" cy="250" r="232" />
@@ -335,13 +410,19 @@ function EducationSection() {
               <button
                 type="button"
                 className={`education-node ${
-                  selectedEducation === category.id ? "education-node-active" : ""
+                  selectedEducation === category.id
+                    ? "education-node-active"
+                    : ""
                 }`}
                 aria-pressed={selectedEducation === category.id}
                 onClick={() => setSelectedEducation(category.id)}
               >
-                <span className="education-node-symbol">{category.symbol}</span>
-                <span className="education-node-label">{category.title}</span>
+                <span className="education-node-symbol">
+                  {category.symbol}
+                </span>
+                <span className="education-node-label">
+                  {category.title}
+                </span>
               </button>
             </div>
           ))}
@@ -353,7 +434,10 @@ function EducationSection() {
           <h3>{selected.title}</h3>
           <p>{selected.description}</p>
           <p>{selected.detail}</p>
-          <span className="education-info-footer">A journey of continuous growth <span>✦</span></span>
+
+          <span className="education-info-footer">
+            A journey of continuous growth <span>✦</span>
+          </span>
         </div>
       </div>
     </section>
@@ -374,11 +458,13 @@ function LessonsSection() {
         {lessons.map((lesson) => (
           <article className="lesson-card" key={lesson.number}>
             <div className="lesson-marker">{lesson.number}</div>
+
             <div className="lesson-content">
               <p className="lesson-label">{lesson.label}</p>
               <h3>{lesson.title}</h3>
               <p>{lesson.text}</p>
             </div>
+
             <span className="lesson-star">✧</span>
           </article>
         ))}
@@ -401,11 +487,16 @@ function ContactSection() {
         <div className="contact-copy">
           <span className="contact-symbol">✉</span>
           <h3>Have something in mind?</h3>
+
           <p>
             I'd love to hear from you. Whether it's a project, an opportunity,
             or simply a conversation about technology, let's connect.
           </p>
-          <a className="contact-email" href="mailto:michaelamaart@gmail.com">
+
+          <a
+            className="contact-email"
+            href="mailto:michaelamaart@gmail.com"
+          >
             <span>✉</span>
             michaelamaart@gmail.com <span>↗</span>
           </a>
@@ -419,10 +510,12 @@ function ContactSection() {
             rel="noreferrer"
           >
             <span className="social-icon">in</span>
+
             <span>
               <strong>LinkedIn</strong>
               <small>Connect with me professionally</small>
             </span>
+
             <span className="social-arrow">↗</span>
           </a>
 
@@ -433,10 +526,12 @@ function ContactSection() {
             rel="noreferrer"
           >
             <span className="social-icon">⌘</span>
+
             <span>
               <strong>GitHub</strong>
               <small>Explore my code and projects</small>
             </span>
+
             <span className="social-arrow">↗</span>
           </a>
         </div>
@@ -448,27 +543,48 @@ function ContactSection() {
 function Footer() {
   return (
     <footer className="site-footer">
-      <a className="footer-brand" href="#home">STELLARA</a>
+      <a className="footer-brand" href="#home">
+        STELLARA
+      </a>
+
       <p>Created by Michaela · Made with curiosity ✦</p>
-      <a href="#home" className="back-to-top">Back to the stars ↑</a>
+
+      <a href="#home" className="back-to-top">
+        Back to the stars ↑
+      </a>
     </footer>
   );
 }
 
 export default function App() {
+  useEffect(() => {
+    if (window.location.hash) {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
+    }
+
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <div className="page-stars"></div>
+
       <Navbar />
+
       <main>
-        <AboutSection />
         <MissionHome />
+        <AboutSection />
         <SkillsSection />
         <ProjectsSection />
         <EducationSection />
         <LessonsSection />
         <ContactSection />
       </main>
+
       <Footer />
     </>
   );

@@ -1774,3 +1774,87 @@ body::after {
     animation: none;
   }
 }
+
+
+.profile-photo {
+  width: 100%;
+  max-width: 320px;
+  height: 400px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 2px solid rgba(164, 145, 255, 0.7);
+  box-shadow: 0 0 25px rgba(125, 95, 255, 0.25);
+  background: #11152b;
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%;
+  display: block;
+}
+
+.profile-monogram {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .profile-photo {
+    max-width: 280px;
+    height: 350px;
+  }
+}
+
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid rgba(164, 145, 255, 0.55);
+  border-radius: 8px;
+  color: #e5ddff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.project-link:hover {
+  background: rgba(125, 95, 255, 0.18);
+  border-color: #a491ff;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid rgba(164, 145, 255, 0.55);
+  border-radius: 8px;
+  color: #e5ddff;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.project-link:hover {
+  background: rgba(125, 95, 255, 0.18);
+  border-color: #a491ff;
+}
