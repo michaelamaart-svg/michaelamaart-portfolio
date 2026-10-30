@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "./App.css";
 import MissionHome from "./MissionHome";
 
@@ -7,64 +7,147 @@ const educationCategories = [
     id: "formal",
     title: "Formal Education",
     symbol: "✦",
-    description: "My formal education and academic background.",
-    detail: "My education has helped me build a foundation for my future."
+    description:
+      "My academic journey has helped me build a foundation for my future in technology.",
+    detail:
+      "Life Choices Academy — Software Development, 2026–Present. High School — National Senior Certificate (Matric), completed in 2022."
   },
   {
     id: "courses",
     title: "Courses & Training",
     symbol: "✧",
-    description: "Courses and training that support my development.",
-    detail: "I continue to learn through practical projects and training."
+    description:
+      "Additional learning experiences that help me expand my technical knowledge.",
+    detail:
+      "I've completed Cisco Data Science and Cybersecurity courses to explore different areas of technology."
   },
   {
     id: "certifications",
     title: "Certifications",
     symbol: "✹",
-    description: "My certifications and completed learning programmes.",
-    detail: "This space can showcase certificates as I continue learning."
+    description:
+      "Certificates that recognise the courses and training I have completed.",
+    detail:
+      "View my Cisco course certificates below."
   },
   {
     id: "learning",
     title: "Currently Learning",
     symbol: "☾",
-    description: "I'm currently growing my software development skills.",
-    detail: "I'm learning new technologies and building projects to practise."
+    description:
+      "I'm continuing to develop my technical skills through practice and projects.",
+    detail:
+      "Explore the technologies and topics I'm currently learning below."
+  }
+];
+
+const certificates = [
+  {
+    title: "Cisco Data Science",
+    provider: "Cisco Networking Academy",
+    description:
+      "Completed training introducing data science concepts and the use of data.",
+    link: "PASTE_YOUR_DATA_SCIENCE_CERTIFICATE_LINK_HERE"
+  },
+  {
+    title: "Cisco Cybersecurity",
+    provider: "Cisco Networking Academy",
+    description:
+      "Completed training covering cybersecurity concepts and digital safety.",
+    link: "PASTE_YOUR_CYBERSECURITY_CERTIFICATE_LINK_HERE"
+  }
+];
+
+const learningTopics = [
+  {
+    name: "JavaScript",
+    symbol: "JS",
+    description:
+      "Practising programming logic, functions, events, and interactive features.",
+    status: "Learning in progress"
+  },
+  {
+    name: "React",
+    symbol: "⚛",
+    description:
+      "Building reusable components and interactive user interfaces.",
+    status: "Learning in progress"
+  },
+  {
+    name: "Vue.js",
+    symbol: "◇",
+    description:
+      "Working with components and building dynamic web applications.",
+    status: "Learning in progress"
+  },
+  {
+    name: "Backend Development",
+    symbol: "⌘",
+    description:
+      "Learning how server-side code, routes, and APIs work together.",
+    status: "Learning in progress"
+  },
+  {
+    name: "Databases",
+    symbol: "▤",
+    description:
+      "Understanding how applications store, organise, and retrieve data.",
+    status: "Learning in progress"
+  },
+  {
+    name: "Git & GitHub",
+    symbol: "⑂",
+    description:
+      "Practising version control, managing changes, and collaborating on projects.",
+    status: "Learning in progress"
   }
 ];
 
 const projects = [
   {
-    title: "The Gallery",
+    title: "Pawtopia",
     number: "01",
-    description: "A creative project showcasing visual ideas and design.",
-    tags: ["Web Design", "Development"],
-    visual: "gallery-visual"
+    description:
+      "A pet-focused web project built as part of my software development journey.",
+    tags: ["Web Development", "Team Project"],
+    visual: "pawtopia-visual",
+    link: "https://pawtopia-team.vercel.app"
+  },
+  {
+    title: "Kay's Cart",
+    number: "02",
+    description:
+      "A shopping list and budget tracker designed to help users organise their shopping and keep track of spending.",
+    tags: ["HTML", "CSS", "JavaScript", "PWA"],
+    visual: "cart-visual",
+    link: "https://stately-crostata-5ffc78.netlify.app"
   },
   {
     title: "HR Modern Tech",
-    number: "02",
-    description: "A professional digital experience focused on modern technology.",
-    tags: ["Web Development", "UI Design"],
+    number: "03",
+    description:
+      "A human resources project focused on employee information and payroll functionality.",
+    tags: ["Web Development", "Payroll"],
     visual: "hr-visual",
-    liveLink: "https://hendrickscial-commits.github.io/modern_tech_back/",
-    githubLink: "https://github.com/hendrickscial-commits/modern-tech.git"
+    link: ""
   },
   {
     title: "Foodboxx",
-    number: "03",
-    description: "A food-related digital project built as part of my development journey.",
-    tags: ["Web Development", "Design"],
+    number: "04",
+    description:
+      "A food-related digital project built as part of my development journey.",
+    tags: ["Web Development", "Team Project"],
     visual: "food-visual",
-    liveLink: "https://foodboxx.onrender.com"
+    link: ""
   },
   {
-    title: "Pawtopia",
-    number: "04",
-    description: "A website project created to provide a digital experience for pet lovers.",
-    tags: ["Web Development", "Team Project"],
-    visual: "pawtopia-visual",
-    liveLink: "https://pawtopia-team.vercel.app"
+    title: "The Gallery",
+    number: "05",
+    description:
+      "A creative project showcasing visual ideas and design.",
+    tags: ["Web Design", "Development"],
+    visual: "gallery-visual",
+    link: ""
   }
 ];
 
@@ -98,6 +181,12 @@ const lessons = [
     title: "The Breakthrough",
     label: "THE NEXT STEP",
     text: "I take what I've learned into the next attempt and keep improving my approach."
+  },
+  {
+    number: "06",
+    title: "Purpose",
+    label: "THE BIGGER PICTURE",
+    text: "I'm learning to embrace change, stay open to new opportunities, and trust the process as I grow into the software developer I want to become."
   }
 ];
 
@@ -202,10 +291,8 @@ function AboutSection() {
           <p className="profile-kicker">
             YOUR FRIENDLY NEIGHBOURHOOD DEVELOPER
           </p>
-
           <h3>Michaela</h3>
           <p className="profile-role">Software Developer</p>
-
           <p className="profile-tagline">
             Curious mind. Creative spirit. Always learning.
           </p>
@@ -218,30 +305,25 @@ function AboutSection() {
 
         <div className="about-copy">
           <p className="section-eyebrow">MY STORY</p>
-
           <h3>
             Building, learning and finding my way through the universe of code.
           </h3>
-
           <p>
             I'm Michaela, a developer with a passion for building interactive
             digital experiences and continuously expanding my technical skills.
           </p>
-
           <p>
             My journey in web development is driven by curiosity, creativity,
             and a commitment to learning. Through building projects and working
             through challenges, I'm developing my abilities, strengthening my
             problem-solving skills, and discovering new ways to bring ideas to life.
           </p>
-
           <p>
             As I continue to grow as a developer, I'm focused on creating
             meaningful projects, improving my technical knowledge, and preparing
             for opportunities where I can contribute, learn, and grow within the
             technology industry.
           </p>
-
           <a className="text-link" href="#skills">
             Explore my skills <span>↗</span>
           </a>
@@ -261,8 +343,7 @@ function SkillsSection() {
     {
       name: "GitHub",
       symbol: "🐙",
-      level: "Version control and collaboration",
-      description: "Pushing and pulling code using GitHub."
+      level: "Version control and collaboration"
     }
   ];
 
@@ -278,7 +359,9 @@ function SkillsSection() {
       <div className="skills-grid">
         {skills.map((skill, index) => (
           <article className="skill-card" key={skill.name}>
-            <span className="skill-number">0{index + 1}</span>
+            <span className="skill-number">
+              {String(index + 1).padStart(2, "0")}
+            </span>
             <div className="skill-symbol">{skill.symbol}</div>
             <h3>{skill.name}</h3>
             <p>{skill.level}</p>
@@ -324,40 +407,100 @@ function ProjectsSection() {
                 ))}
               </div>
 
-              <div className="project-links">
-                {project.liveLink && (
-                  <a
-                    className="project-link"
-                    href={project.liveLink}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    View Project <span>↗</span>
-                  </a>
-                )}
-
-                {project.githubLink && (
-                  <a
-                    className="project-link"
-                    href={project.githubLink}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    GitHub <span>↗</span>
-                  </a>
-                )}
-
-                {!project.liveLink && !project.githubLink && (
-                  <p className="project-note">
-                    More details coming soon <span>✦</span>
-                  </p>
-                )}
-              </div>
+              {project.link ? (
+                <a
+                  className="text-link"
+                  href={project.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View Project <span>↗</span>
+                </a>
+              ) : (
+                <p className="project-note">
+                  More details coming soon <span>✦</span>
+                </p>
+              )}
             </div>
           </article>
         ))}
       </div>
     </section>
+  );
+}
+
+function CertificateSection() {
+  return (
+    <div className="certificate-section">
+      <p className="section-eyebrow">PROOF OF LEARNING</p>
+      <h3>My Certificates</h3>
+      <p>
+        Explore the courses I've completed and the certificates I've earned.
+      </p>
+
+      <div className="skills-grid">
+        {certificates.map((certificate, index) => {
+          const linkReady =
+            certificate.link.startsWith("https://") ||
+            certificate.link.startsWith("http://");
+
+          return (
+            <article className="skill-card" key={certificate.title}>
+              <span className="skill-number">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div className="skill-symbol">✹</div>
+              <h3>{certificate.title}</h3>
+              <p>{certificate.provider}</p>
+              <p>{certificate.description}</p>
+
+              {linkReady ? (
+                <a
+                  className="text-link"
+                  href={certificate.link}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  View Certificate <span>↗</span>
+                </a>
+              ) : (
+                <p className="project-note">
+                  Add your certificate link <span>✦</span>
+                </p>
+              )}
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function LearningSection() {
+  return (
+    <div className="learning-section">
+      <p className="section-eyebrow">LEARNING IN PROGRESS</p>
+      <h3>Currently Exploring the Universe of Code</h3>
+      <p>
+        I'm continuing to build my skills through practice, projects, and
+        discovering new ways to solve problems.
+      </p>
+
+      <div className="skills-grid">
+        {learningTopics.map((topic, index) => (
+          <article className="skill-card" key={topic.name}>
+            <span className="skill-number">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <div className="skill-symbol">{topic.symbol}</div>
+            <h3>{topic.name}</h3>
+            <p>{topic.description}</p>
+            <span className="skill-star">✦</span>
+            <p className="learning-status">{topic.status}</p>
+          </article>
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -381,7 +524,6 @@ function EducationSection() {
         <div className="education-map">
           <div className="education-nebula education-nebula-one"></div>
           <div className="education-nebula education-nebula-two"></div>
-
           <div className="education-starfield">
             ✦　·　✧　·　✦　·　✧　·　✦
           </div>
@@ -435,6 +577,14 @@ function EducationSection() {
           <p>{selected.description}</p>
           <p>{selected.detail}</p>
 
+          {selectedEducation === "certifications" && (
+            <CertificateSection />
+          )}
+
+          {selectedEducation === "learning" && (
+            <LearningSection />
+          )}
+
           <span className="education-info-footer">
             A journey of continuous growth <span>✦</span>
           </span>
@@ -458,13 +608,11 @@ function LessonsSection() {
         {lessons.map((lesson) => (
           <article className="lesson-card" key={lesson.number}>
             <div className="lesson-marker">{lesson.number}</div>
-
             <div className="lesson-content">
               <p className="lesson-label">{lesson.label}</p>
               <h3>{lesson.title}</h3>
               <p>{lesson.text}</p>
             </div>
-
             <span className="lesson-star">✧</span>
           </article>
         ))}
@@ -474,23 +622,51 @@ function LessonsSection() {
 }
 
 function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    const subject = encodeURIComponent(
+      formData.subject || "Portfolio enquiry"
+    );
+
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+    );
+
+    window.location.href =
+      `mailto:michaelamaart@gmail.com?subject=${subject}&body=${body}`;
+  };
+
   return (
     <section className="contact-section section-shell" id="contact">
       <SectionHeading
         eyebrow="SEND A SIGNAL"
         title="Let's Connect"
         subtitle="Every universe is better with a little connection."
-        description="Let's bring new ideas together — your next message could be the start of something exciting."
+        description="Have a project, an opportunity, or a question? I'd love to hear from you."
       />
 
       <div className="contact-panel">
         <div className="contact-copy">
           <span className="contact-symbol">✉</span>
           <h3>Have something in mind?</h3>
-
           <p>
-            I'd love to hear from you. Whether it's a project, an opportunity,
-            or simply a conversation about technology, let's connect.
+            Whether it's a project, an opportunity, or a conversation about
+            technology, let's connect.
           </p>
 
           <a
@@ -499,6 +675,12 @@ function ContactSection() {
           >
             <span>✉</span>
             michaelamaart@gmail.com <span>↗</span>
+          </a>
+
+          <a className="contact-email" href="tel:REPLACE_WITH_YOUR_PHONE_NUMBER">
+            <span>☎</span>
+            Add your phone number
+            <span>↗</span>
           </a>
         </div>
 
@@ -510,12 +692,10 @@ function ContactSection() {
             rel="noreferrer"
           >
             <span className="social-icon">in</span>
-
             <span>
               <strong>LinkedIn</strong>
               <small>Connect with me professionally</small>
             </span>
-
             <span className="social-arrow">↗</span>
           </a>
 
@@ -526,15 +706,79 @@ function ContactSection() {
             rel="noreferrer"
           >
             <span className="social-icon">⌘</span>
-
             <span>
               <strong>GitHub</strong>
               <small>Explore my code and projects</small>
             </span>
-
             <span className="social-arrow">↗</span>
           </a>
         </div>
+      </div>
+
+      <div className="contact-form-panel">
+        <p className="section-eyebrow">OPEN A COMMUNICATION CHANNEL</p>
+        <h3>Send Me a Message</h3>
+        <p>
+          Fill in the form below to prepare an email to me.
+        </p>
+
+        <form className="contact-form" onSubmit={handleSubmit}>
+          <div className="form-field">
+            <label htmlFor="contact-name">Your name</label>
+            <input
+              id="contact-name"
+              name="name"
+              type="text"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Enter your name"
+              required
+            />
+          </div>
+
+          <div className="form-field">
+            <label htmlFor="contact-email">Your email</label>
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div className="form-field">
+            <label htmlFor="contact-subject">Subject</label>
+            <input
+              id="contact-subject"
+              name="subject"
+              type="text"
+              value={formData.subject}
+              onChange={handleChange}
+              placeholder="What would you like to discuss?"
+              required
+            />
+          </div>
+
+          <div className="form-field">
+            <label htmlFor="contact-message">Your message</label>
+            <textarea
+              id="contact-message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              placeholder="Write your message here..."
+              rows="5"
+              required
+            ></textarea>
+          </div>
+
+          <button className="contact-submit" type="submit">
+            Prepare Email ↗
+          </button>
+        </form>
       </div>
     </section>
   );
@@ -546,9 +790,7 @@ function Footer() {
       <a className="footer-brand" href="#home">
         STELLARA
       </a>
-
       <p>Created by Michaela · Made with curiosity ✦</p>
-
       <a href="#home" className="back-to-top">
         Back to the stars ↑
       </a>
@@ -557,22 +799,9 @@ function Footer() {
 }
 
 export default function App() {
-  useEffect(() => {
-    if (window.location.hash) {
-      window.history.replaceState(
-        null,
-        "",
-        window.location.pathname + window.location.search
-      );
-    }
-
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
     <>
       <div className="page-stars"></div>
-
       <Navbar />
 
       <main>
@@ -589,3 +818,4 @@ export default function App() {
     </>
   );
 }
+
