@@ -43,18 +43,18 @@ const educationCategories = [
 
 const certificates = [
   {
-    title: "Cisco Data Science",
+    title: "Introduction to Data Science",
     provider: "Cisco Networking Academy",
     description:
-      "Completed training introducing data science concepts and the use of data.",
-    link: "PASTE_YOUR_DATA_SCIENCE_CERTIFICATE_LINK_HERE"
+      "Completed through Life Choices Academy on 31 August 2026.",
+    link: "https://www.credly.com/badges/a6f5f9bc-a080-41f6-a167-1ba6654b4adc/public_url"
   },
   {
-    title: "Cisco Cybersecurity",
+    title: "Introduction to Cybersecurity",
     provider: "Cisco Networking Academy",
     description:
-      "Completed training covering cybersecurity concepts and digital safety.",
-    link: "PASTE_YOUR_CYBERSECURITY_CERTIFICATE_LINK_HERE"
+      "Completed through Life Choices Academy on 31 August 2026.",
+    link: "https://www.credly.com/badges/3450618f-bad4-42f7-b9d2-d1a1631234d5/public_url"
   }
 ];
 
@@ -111,7 +111,9 @@ const projects = [
       "A pet-focused web project built as part of my software development journey.",
     tags: ["Web Development", "Team Project"],
     visual: "pawtopia-visual",
-    link: "https://pawtopia-team.vercel.app"
+    image: "/pawtopia.png",
+    link: "https://pawtopia-team.vercel.app",
+    github: "https://github.com/avivarendse/Pawtopia.git"
   },
   {
     title: "Kay's Cart",
@@ -119,8 +121,10 @@ const projects = [
     description:
       "A shopping list and budget tracker designed to help users organise their shopping and keep track of spending.",
     tags: ["HTML", "CSS", "JavaScript", "PWA"],
-    visual: "cart-visual",
-    link: "https://stately-crostata-5ffc78.netlify.app"
+    visual: "kays-cart-visual",
+    image: "/icon-512(1).png",
+    link: "https://stately-crostata-5ffc78.netlify.app",
+    github: "https://github.com/michaelamaart-svg/KaysCart-2026.git"
   },
   {
     title: "HR Modern Tech",
@@ -129,7 +133,9 @@ const projects = [
       "A human resources project focused on employee information and payroll functionality.",
     tags: ["Web Development", "Payroll"],
     visual: "hr-visual",
-    link: ""
+    image: "/hr-modern-tech.png",
+    link: "https://hendrickscial-commits.github.io/modern_tech_back/",
+    github: "https://github.com/hendrickscial-commits/modern-tech.git"
   },
   {
     title: "Foodboxx",
@@ -138,55 +144,9 @@ const projects = [
       "A food-related digital project built as part of my development journey.",
     tags: ["Web Development", "Team Project"],
     visual: "food-visual",
-    link: ""
-  },
-  {
-    title: "The Gallery",
-    number: "05",
-    description:
-      "A creative project showcasing visual ideas and design.",
-    tags: ["Web Design", "Development"],
-    visual: "gallery-visual",
-    link: ""
-  }
-];
-
-const lessons = [
-  {
-    number: "01",
-    title: "The Mission",
-    label: "THE GOAL",
-    text: "Every project starts with an idea, a goal and something new to explore."
-  },
-  {
-    number: "02",
-    title: "The Challenge",
-    label: "THE PROBLEM",
-    text: "Development comes with unexpected errors, confusing code and moments that need patience."
-  },
-  {
-    number: "03",
-    title: "The Discovery",
-    label: "THE INVESTIGATION",
-    text: "Breaking a problem into smaller steps helps me understand what's happening and find possible solutions."
-  },
-  {
-    number: "04",
-    title: "The Lesson",
-    label: "THE LEARNING",
-    text: "Each challenge gives me a chance to strengthen my problem-solving skills and learn something new."
-  },
-  {
-    number: "05",
-    title: "The Breakthrough",
-    label: "THE NEXT STEP",
-    text: "I take what I've learned into the next attempt and keep improving my approach."
-  },
-  {
-    number: "06",
-    title: "Purpose",
-    label: "THE BIGGER PICTURE",
-    text: "I'm learning to embrace change, stay open to new opportunities, and trust the process as I grow into the software developer I want to become."
+    image: "/foodboxx.png",
+    link: "https://foodboxx.onrender.com/login?redirect=/",
+    github: "https://github.com/Caleb-Asia/Group-10---Module-3-Core-Project.git"
   }
 ];
 
@@ -219,7 +179,6 @@ function Navbar() {
     { label: "Skills", href: "#skills" },
     { label: "Projects", href: "#projects" },
     { label: "Education", href: "#education" },
-    { label: "Lessons", href: "#lessons" },
     { label: "Contact", href: "#contact" }
   ];
 
@@ -394,6 +353,17 @@ function ProjectsSection() {
               <span className="project-visual-label">
                 STELLARA / PROJECT FILE
               </span>
+
+              {project.image && (
+                <img
+                  className="project-image"
+                  src={project.image}
+                  alt={`${project.title} project preview`}
+                  onError={(event) => {
+                    event.currentTarget.style.display = "none";
+                  }}
+                />
+              )}
             </div>
 
             <div className="project-content">
@@ -407,20 +377,37 @@ function ProjectsSection() {
                 ))}
               </div>
 
-              {project.link ? (
-                <a
-                  className="text-link"
-                  href={project.link}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  View Project <span>↗</span>
-                </a>
-              ) : (
-                <p className="project-note">
-                  More details coming soon <span>✦</span>
-                </p>
-              )}
+              <div className="project-links">
+                {project.link ? (
+                  <a
+                    className="project-button live-button"
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span>↗</span> Live Preview
+                  </a>
+                ) : (
+                  <span className="project-button unavailable-button">
+                    ◌ Live Preview Soon
+                  </span>
+                )}
+
+                {project.github ? (
+                  <a
+                    className="project-button github-button"
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span>⌘</span> GitHub Repository
+                  </a>
+                ) : (
+                  <span className="project-button unavailable-button">
+                    ◌ Repository Soon
+                  </span>
+                )}
+              </div>
             </div>
           </article>
         ))}
@@ -439,38 +426,26 @@ function CertificateSection() {
       </p>
 
       <div className="skills-grid">
-        {certificates.map((certificate, index) => {
-          const linkReady =
-            certificate.link.startsWith("https://") ||
-            certificate.link.startsWith("http://");
+        {certificates.map((certificate, index) => (
+          <article className="skill-card" key={certificate.title}>
+            <span className="skill-number">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <div className="skill-symbol">✹</div>
+            <h3>{certificate.title}</h3>
+            <p>{certificate.provider}</p>
+            <p>{certificate.description}</p>
 
-          return (
-            <article className="skill-card" key={certificate.title}>
-              <span className="skill-number">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div className="skill-symbol">✹</div>
-              <h3>{certificate.title}</h3>
-              <p>{certificate.provider}</p>
-              <p>{certificate.description}</p>
-
-              {linkReady ? (
-                <a
-                  className="text-link"
-                  href={certificate.link}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  View Certificate <span>↗</span>
-                </a>
-              ) : (
-                <p className="project-note">
-                  Add your certificate link <span>✦</span>
-                </p>
-              )}
-            </article>
-          );
-        })}
+            <a
+              className="text-link"
+              href={certificate.link}
+              target="_blank"
+              rel="noreferrer"
+            >
+              View Certificate <span>↗</span>
+            </a>
+          </article>
+        ))}
       </div>
     </div>
   );
@@ -594,63 +569,7 @@ function EducationSection() {
   );
 }
 
-function LessonsSection() {
-  return (
-    <section className="lessons-section section-shell" id="lessons">
-      <SectionHeading
-        eyebrow="NOTES FROM THE COSMOS"
-        title="Lessons from the Universe"
-        subtitle="Every challenge is an opportunity to learn."
-        description="Explore the problems I've encountered during development, how I approached them, and the lessons I've taken forward."
-      />
-
-      <div className="lessons-timeline">
-        {lessons.map((lesson) => (
-          <article className="lesson-card" key={lesson.number}>
-            <div className="lesson-marker">{lesson.number}</div>
-            <div className="lesson-content">
-              <p className="lesson-label">{lesson.label}</p>
-              <h3>{lesson.title}</h3>
-              <p>{lesson.text}</p>
-            </div>
-            <span className="lesson-star">✧</span>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function ContactSection() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
-  });
-
-  const handleChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value
-    });
-  };
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const subject = encodeURIComponent(
-      formData.subject || "Portfolio enquiry"
-    );
-
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    );
-
-    window.location.href =
-      `mailto:michaelamaart@gmail.com?subject=${subject}&body=${body}`;
-  };
-
   return (
     <section className="contact-section section-shell" id="contact">
       <SectionHeading
@@ -677,9 +596,9 @@ function ContactSection() {
             michaelamaart@gmail.com <span>↗</span>
           </a>
 
-          <a className="contact-email" href="tel:REPLACE_WITH_YOUR_PHONE_NUMBER">
+          <a className="contact-email" href="tel:0764410345">
             <span>☎</span>
-            Add your phone number
+            076 441 0345
             <span>↗</span>
           </a>
         </div>
@@ -715,71 +634,6 @@ function ContactSection() {
         </div>
       </div>
 
-      <div className="contact-form-panel">
-        <p className="section-eyebrow">OPEN A COMMUNICATION CHANNEL</p>
-        <h3>Send Me a Message</h3>
-        <p>
-          Fill in the form below to prepare an email to me.
-        </p>
-
-        <form className="contact-form" onSubmit={handleSubmit}>
-          <div className="form-field">
-            <label htmlFor="contact-name">Your name</label>
-            <input
-              id="contact-name"
-              name="name"
-              type="text"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Enter your name"
-              required
-            />
-          </div>
-
-          <div className="form-field">
-            <label htmlFor="contact-email">Your email</label>
-            <input
-              id="contact-email"
-              name="email"
-              type="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-
-          <div className="form-field">
-            <label htmlFor="contact-subject">Subject</label>
-            <input
-              id="contact-subject"
-              name="subject"
-              type="text"
-              value={formData.subject}
-              onChange={handleChange}
-              placeholder="What would you like to discuss?"
-              required
-            />
-          </div>
-
-          <div className="form-field">
-            <label htmlFor="contact-message">Your message</label>
-            <textarea
-              id="contact-message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Write your message here..."
-              rows="5"
-              required
-            ></textarea>
-          </div>
-
-          <button className="contact-submit" type="submit">
-            Prepare Email ↗
-          </button>
-        </form>
-      </div>
     </section>
   );
 }
@@ -810,7 +664,6 @@ export default function App() {
         <SkillsSection />
         <ProjectsSection />
         <EducationSection />
-        <LessonsSection />
         <ContactSection />
       </main>
 
@@ -818,4 +671,3 @@ export default function App() {
     </>
   );
 }
-

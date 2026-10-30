@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 :root {
@@ -27,14 +28,17 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(ellipse at 15% 15%, rgba(57, 64, 145, 0.12), transparent 38%),
-    radial-gradient(ellipse at 85% 48%, rgba(72, 43, 119, 0.13), transparent 35%),
+    radial-gradient(ellipse at 15% 20%, rgba(91, 65, 160, 0.12), transparent 35%),
+    radial-gradient(ellipse at 85% 35%, rgba(39, 78, 150, 0.12), transparent 35%),
+    radial-gradient(ellipse at 50% 85%, rgba(100, 60, 160, 0.09), transparent 40%),
     #070b18;
+  background-attachment: fixed;
   color: #f1f0ff;
 }
 
@@ -61,6 +65,44 @@ button {
 ::selection {
   color: #070b18;
   background: #a99aff;
+}
+
+body::before,
+body::after {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  content: "";
+  pointer-events: none;
+}
+
+body::before {
+  background-image:
+    radial-gradient(1px 1px at 20px 30px, #fff 99%, transparent),
+    radial-gradient(1px 1px at 80px 120px, rgba(255, 255, 255, 0.8) 99%, transparent),
+    radial-gradient(2px 2px at 160px 90px, rgba(190, 180, 255, 0.9) 99%, transparent),
+    radial-gradient(1px 1px at 240px 180px, #fff 99%, transparent),
+    radial-gradient(1px 1px at 300px 40px, rgba(170, 205, 255, 0.8) 99%, transparent),
+    radial-gradient(2px 2px at 360px 150px, rgba(255, 255, 255, 0.75) 99%, transparent);
+  background-size: 400px 220px;
+  opacity: 0.65;
+  animation: galaxy-drift 100s linear infinite;
+}
+
+body::after {
+  background-image:
+    radial-gradient(1.5px 1.5px at 50px 100px, #fff 99%, transparent),
+    radial-gradient(2px 2px at 190px 40px, rgba(180, 170, 255, 0.9) 99%, transparent),
+    radial-gradient(1px 1px at 270px 160px, rgba(180, 220, 255, 0.8) 99%, transparent);
+  background-size: 320px 200px;
+  opacity: 0.4;
+  animation: star-twinkle 4s ease-in-out infinite alternate;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
 }
 
 .page-stars {
@@ -291,36 +333,39 @@ button {
   inset: 0;
   opacity: 0.35;
   pointer-events: none;
-  background-image: radial-gradient(1px 1px at 20% 20%, white 50%, transparent 100%), radial-gradient(2px 2px at 80% 35%, #a99aff 50%, transparent 100%), radial-gradient(1px 1px at 65% 85%, white 50%, transparent 100%);
+  background-image:
+    radial-gradient(1px 1px at 20% 20%, white 50%, transparent 100%),
+    radial-gradient(2px 2px at 80% 35%, #a99aff 50%, transparent 100%),
+    radial-gradient(1px 1px at 65% 85%, white 50%, transparent 100%);
   background-size: 160px 140px;
 }
 
 .profile-photo {
   position: relative;
-  display: grid;
-  width: 155px;
-  height: 155px;
-  place-items: center;
+  width: 100%;
+  max-width: 320px;
+  height: 400px;
   overflow: hidden;
-  margin-bottom: 25px;
-  border: 1px solid rgba(126, 232, 245, 0.65);
-  border-radius: 50%;
-  background: linear-gradient(145deg, #252e62, #10172e);
-  box-shadow: 0 0 0 8px rgba(126, 232, 245, 0.045), 0 0 35px rgba(123, 116, 255, 0.25);
+  margin: 0 auto 25px;
+  border: 2px solid rgba(164, 145, 255, 0.7);
+  border-radius: 20px;
+  background: #11152b;
+  box-shadow: 0 0 25px rgba(125, 95, 255, 0.25);
 }
 
 .profile-photo img {
   position: absolute;
   inset: 0;
   z-index: 2;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 25%;
 }
 
 .profile-monogram {
-  display: grid;
-  place-items: center;
+  display: none;
 }
 
 .profile-kicker {
@@ -466,6 +511,7 @@ button {
   margin: 0;
   color: var(--muted);
   font-size: 0.77rem;
+  line-height: 1.7;
 }
 
 .skill-star {
@@ -475,7 +521,9 @@ button {
   color: rgba(217, 154, 191, 0.7);
 }
 
-.projects-section {
+.projects-section,
+.education-section,
+.contact-section {
   isolation: isolate;
 }
 
@@ -487,7 +535,9 @@ button {
   z-index: -1;
   content: "";
   pointer-events: none;
-  background: radial-gradient(ellipse at 25% 30%, rgba(92, 79, 183, 0.15), transparent 40%), radial-gradient(ellipse at 75% 70%, rgba(59, 158, 191, 0.1), transparent 40%);
+  background:
+    radial-gradient(ellipse at 25% 30%, rgba(92, 79, 183, 0.15), transparent 40%),
+    radial-gradient(ellipse at 75% 70%, rgba(59, 158, 191, 0.1), transparent 40%);
   animation: cosmic-glow 16s ease-in-out infinite alternate;
 }
 
@@ -498,7 +548,10 @@ button {
   content: "";
   pointer-events: none;
   opacity: 0.24;
-  background-image: radial-gradient(1px 1px at 10% 20%, white 50%, transparent 100%), radial-gradient(1px 1px at 70% 45%, #9cefff 50%, transparent 100%), radial-gradient(2px 2px at 90% 75%, #b7a5ff 50%, transparent 100%);
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, white 50%, transparent 100%),
+    radial-gradient(1px 1px at 70% 45%, #9cefff 50%, transparent 100%),
+    radial-gradient(2px 2px at 90% 75%, #b7a5ff 50%, transparent 100%);
   background-size: 230px 220px, 320px 280px, 380px 340px;
   animation: star-drift 35s linear infinite;
 }
@@ -534,26 +587,35 @@ button {
   flex: 0 0 180px;
   place-items: center;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 50%, rgba(90, 103, 194, 0.35), transparent 48%), linear-gradient(145deg, #131b3b, #0b1024);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(90, 103, 194, 0.35), transparent 48%),
+    linear-gradient(145deg, #131b3b, #0b1024);
 }
 
 .gallery-visual {
-  background: radial-gradient(circle at 50% 50%, rgba(185, 140, 255, 0.28), transparent 50%), linear-gradient(145deg, #171632, #0b1024);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(185, 140, 255, 0.28), transparent 50%),
+    linear-gradient(145deg, #171632, #0b1024);
 }
 
 .hr-visual {
-  background: radial-gradient(circle at 50% 50%, rgba(117, 231, 245, 0.24), transparent 50%), linear-gradient(145deg, #10283b, #0b1024);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(117, 231, 245, 0.24), transparent 50%),
+    linear-gradient(145deg, #10283b, #0b1024);
 }
 
 .food-visual {
-  background: radial-gradient(circle at 50% 50%, rgba(217, 154, 191, 0.24), transparent 50%), linear-gradient(145deg, #30203b, #0b1024);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(217, 154, 191, 0.24), transparent 50%),
+    linear-gradient(145deg, #30203b, #0b1024);
 }
 
 .project-number {
   position: absolute;
   top: 15px;
   left: 17px;
-  color: rgba(235, 235, 255, 0.7);
+  z-index: 3;
+  color: rgba(235, 235, 255, 0.85);
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.77rem;
 }
@@ -599,9 +661,21 @@ button {
   position: absolute;
   right: 14px;
   bottom: 13px;
-  color: rgba(221, 225, 255, 0.65);
+  z-index: 3;
+  color: rgba(221, 225, 255, 0.85);
   font-size: 0.55rem;
   letter-spacing: 0.12em;
+}
+
+.project-image {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
 }
 
 .project-content {
@@ -656,6 +730,66 @@ button {
 
 .project-note span {
   color: var(--pink);
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(157, 123, 255, 0.18);
+}
+
+.project-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 17px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.live-button {
+  border: 1px solid transparent;
+  background: linear-gradient(135deg, #5de4ff, #9b7bff);
+  color: #071321;
+  box-shadow: 0 0 14px rgba(93, 228, 255, 0.15);
+}
+
+.live-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 22px rgba(93, 228, 255, 0.4);
+}
+
+.github-button {
+  border: 1px solid rgba(155, 123, 255, 0.4);
+  background: rgba(155, 123, 255, 0.08);
+  color: #c9baff;
+}
+
+.github-button:hover {
+  transform: translateY(-4px);
+  border-color: #9b7bff;
+  background: rgba(155, 123, 255, 0.2);
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(155, 123, 255, 0.25);
+}
+
+.unavailable-button {
+  border: 1px dashed rgba(180, 180, 210, 0.2);
+  background: rgba(255, 255, 255, 0.025);
+  color: rgba(200, 205, 225, 0.5);
+  cursor: default;
+}
+
+.project-button span {
+  font-size: 15px;
 }
 
 /* Education */
@@ -1040,26 +1174,42 @@ button {
   line-height: 1.9;
 }
 
-@keyframes planet-screen-enter {
-  from {
-    opacity: 0;
-    backdrop-filter: blur(0);
-  }
-  to {
-    opacity: 1;
-    backdrop-filter: blur(12px);
-  }
+.certificate-section {
+  margin-top: 45px;
 }
 
-@keyframes planet-content-enter {
-  from {
-    opacity: 0;
-    transform: translateY(20px) scale(0.97);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
+.certificate-section .skills-grid {
+  margin-top: 20px;
+}
+
+.certificate-section .skill-card {
+  display: flex;
+  height: auto;
+  min-height: 280px;
+  flex-direction: column;
+}
+
+.certificate-section .skill-card p {
+  line-height: 1.7;
+}
+
+.certificate-section .text-link {
+  display: inline-flex;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 15px;
+}
+
+.learning-section {
+  margin-top: 45px;
+}
+
+.learning-section .skills-grid {
+  margin-top: 20px;
+}
+
+.learning-section .skill-card {
+  min-height: 170px;
 }
 
 .lessons-timeline {
@@ -1146,7 +1296,9 @@ button {
   padding: clamp(25px, 5vw, 55px);
   border: 1px solid rgba(173, 169, 255, 0.22);
   border-radius: 28px;
-  background: radial-gradient(ellipse at 10% 10%, rgba(101, 85, 184, 0.18), transparent 45%), linear-gradient(145deg, rgba(20, 27, 55, 0.95), rgba(11, 16, 35, 0.96));
+  background:
+    radial-gradient(ellipse at 10% 10%, rgba(101, 85, 184, 0.18), transparent 45%),
+    linear-gradient(145deg, rgba(20, 27, 55, 0.95), rgba(11, 16, 35, 0.96));
 }
 
 .contact-copy {
@@ -1184,16 +1336,22 @@ button {
 .contact-email {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
   margin-top: 26px;
   color: var(--cyan);
   font-size: 0.82rem;
   overflow-wrap: anywhere;
+  transition: color 0.3s ease;
+}
+
+.contact-email:hover {
+  color: var(--purple);
 }
 
 .contact-details {
   display: flex;
+  min-width: 0;
   flex-direction: column;
   justify-content: center;
   gap: 15px;
@@ -1246,10 +1404,108 @@ button {
   color: var(--muted);
   font-size: 0.7rem;
   line-height: 1.5;
+  overflow-wrap: anywhere;
 }
 
 .social-arrow {
   color: var(--pink);
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.contact-form-panel {
+  padding: 30px;
+  border: 1px solid rgba(93, 228, 255, 0.2);
+  border-radius: 20px;
+  background: rgba(13, 22, 45, 0.75);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.contact-form-panel h3 {
+  margin: 18px 0;
+  color: #ffffff;
+  font-size: 25px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-top: 25px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.form-field label {
+  color: #dce8ff;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid rgba(93, 228, 255, 0.18);
+  border-radius: 10px;
+  outline: none;
+  background: rgba(7, 11, 24, 0.85);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 14px;
+  transition: 0.3s ease;
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+  color: #71809c;
+}
+
+.form-field input:focus,
+.form-field textarea:focus {
+  border-color: #5de4ff;
+  box-shadow: 0 0 12px rgba(93, 228, 255, 0.15);
+}
+
+.form-field textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.contact-submit {
+  width: 100%;
+  padding: 15px 20px;
+  border: 1px solid #5de4ff;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #5de4ff, #9b7bff);
+  color: #070b18;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.contact-submit:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(93, 228, 255, 0.3);
+}
+
+.form-note {
+  color: #8290a9;
+  font-size: 11px;
+  line-height: 1.6;
+  text-align: center;
 }
 
 .site-footer {
@@ -1290,6 +1546,24 @@ button {
   }
 }
 
+@keyframes galaxy-drift {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 400px 220px;
+  }
+}
+
+@keyframes star-twinkle {
+  from {
+    opacity: 0.2;
+  }
+  to {
+    opacity: 0.65;
+  }
+}
+
 @keyframes cosmic-glow {
   from {
     opacity: 0.65;
@@ -1325,6 +1599,28 @@ button {
   }
   50% {
     box-shadow: 0 0 35px rgba(255, 203, 139, 0.55), 0 0 80px rgba(213, 148, 255, 0.3);
+  }
+}
+
+@keyframes planet-screen-enter {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(12px);
+  }
+}
+
+@keyframes planet-content-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -1441,6 +1737,19 @@ button {
   .education-info-symbol {
     margin-top: 12px;
   }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .contact-form-panel {
+    padding: 22px;
+  }
+
+  .contact-form-panel h3 {
+    font-size: 21px;
+  }
 }
 
 @media (max-width: 600px) {
@@ -1507,6 +1816,11 @@ button {
     min-height: 380px;
   }
 
+  .profile-photo {
+    max-width: 280px;
+    height: 350px;
+  }
+
   .about-copy h3 {
     font-size: 1.65rem;
   }
@@ -1540,6 +1854,10 @@ button {
     line-height: 1.5;
   }
 
+  .certificate-section .skill-card {
+    min-height: 250px;
+  }
+
   .project-grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -1552,6 +1870,14 @@ button {
 
   .project-content {
     padding: 20px;
+  }
+
+  .project-links {
+    flex-direction: column;
+  }
+
+  .project-button {
+    width: 100%;
   }
 
   .education-map {
@@ -1696,6 +2022,16 @@ button {
   }
 }
 
+@media (max-width: 480px) {
+  .contact-form-panel {
+    padding: 20px 16px;
+  }
+
+  .project-content h3 {
+    font-size: 1.2rem;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1705,156 +2041,9 @@ button {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-}
 
-body {
-  background:
-    radial-gradient(ellipse at 15% 20%, rgba(91, 65, 160, 0.12), transparent 35%),
-    radial-gradient(ellipse at 85% 35%, rgba(39, 78, 150, 0.12), transparent 35%),
-    radial-gradient(ellipse at 50% 85%, rgba(100, 60, 160, 0.09), transparent 40%),
-    #070b18;
-  background-attachment: fixed;
-}
-
-body::before,
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-}
-
-body::before {
-  background-image:
-    radial-gradient(1px 1px at 20px 30px, #fff 99%, transparent),
-    radial-gradient(1px 1px at 80px 120px, rgba(255, 255, 255, 0.8) 99%, transparent),
-    radial-gradient(2px 2px at 160px 90px, rgba(190, 180, 255, 0.9) 99%, transparent),
-    radial-gradient(1px 1px at 240px 180px, #fff 99%, transparent),
-    radial-gradient(1px 1px at 300px 40px, rgba(170, 205, 255, 0.8) 99%, transparent),
-    radial-gradient(2px 2px at 360px 150px, rgba(255, 255, 255, 0.75) 99%, transparent);
-  background-size: 400px 220px;
-  opacity: 0.65;
-  animation: galaxy-drift 100s linear infinite;
-}
-
-body::after {
-  background-image:
-    radial-gradient(1.5px 1.5px at 50px 100px, #fff 99%, transparent),
-    radial-gradient(2px 2px at 190px 40px, rgba(180, 170, 255, 0.9) 99%, transparent),
-    radial-gradient(1px 1px at 270px 160px, rgba(180, 220, 255, 0.8) 99%, transparent);
-  background-size: 320px 200px;
-  opacity: 0.4;
-  animation: star-twinkle 4s ease-in-out infinite alternate;
-}
-
-@keyframes galaxy-drift {
-  from {
-    background-position: 0 0;
-  }
-
-  to {
-    background-position: 400px 220px;
-  }
-}
-
-@keyframes star-twinkle {
-  from {
-    opacity: 0.2;
-  }
-
-  to {
-    opacity: 0.65;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
   body::before,
   body::after {
     animation: none;
   }
-}
-
-
-.profile-photo {
-  width: 100%;
-  max-width: 320px;
-  height: 400px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  border: 2px solid rgba(164, 145, 255, 0.7);
-  box-shadow: 0 0 25px rgba(125, 95, 255, 0.25);
-  background: #11152b;
-}
-
-.profile-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 25%;
-  display: block;
-}
-
-.profile-monogram {
-  display: none;
-}
-
-@media (max-width: 600px) {
-  .profile-photo {
-    max-width: 280px;
-    height: 350px;
-  }
-}
-
-
-.project-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.project-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border: 1px solid rgba(164, 145, 255, 0.55);
-  border-radius: 8px;
-  color: #e5ddff;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-
-.project-link:hover {
-  background: rgba(125, 95, 255, 0.18);
-  border-color: #a491ff;
-}
-
-.project-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 20px;
-}
-
-.project-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 16px;
-  border: 1px solid rgba(164, 145, 255, 0.55);
-  border-radius: 8px;
-  color: #e5ddff;
-  text-decoration: none;
-  font-size: 0.9rem;
-  transition: background 0.3s ease, border-color 0.3s ease;
-}
-
-.project-link:hover {
-  background: rgba(125, 95, 255, 0.18);
-  border-color: #a491ff;
 }
